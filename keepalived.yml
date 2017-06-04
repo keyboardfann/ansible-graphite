@@ -1,6 +1,6 @@
 ---
 - name: deploy LVS+Keepalived on host
-  hosts: keepalived
+  hosts: all
   roles:
     - role: keepalived
 
