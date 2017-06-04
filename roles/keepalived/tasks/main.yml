@@ -1,0 +1,18 @@
+---
+## Install Keepalived + LVS
+- name: install keepalived packages
+  yum: pkg={{ item }} update_cache=yes
+  with_items:
+    - ipvsadm
+    - keepalived
+## Check /etc/sysconfig/ipvsadm  exists
+- name: Check /etc/sysconfig/ipvsadm exists
+  stat:
+    path: /etc/sysconfig/ipvsadm
+  register: ipvsadm_file
+  notify: start lvs
+## If /etc/sysconfig/ipvsadm not exist , create it
+- name: create ipvsadmin service script
+  file: path=/etc/sysconfig/ipvsadm state=touch
+  when: ipvsadm_file.stat.exists == false
+## 
