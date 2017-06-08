@@ -1,6 +1,1 @@
 ---
-- name: start lvs
-  service: 
-    name=ipvsadmin 
-    state=start 
-    enabled=yes

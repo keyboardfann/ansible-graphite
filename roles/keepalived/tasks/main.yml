@@ -5,14 +5,23 @@
   with_items:
     - ipvsadm
     - keepalived
-## Check /etc/sysconfig/ipvsadm  exists
-- name: Check /etc/sysconfig/ipvsadm exists
+## Check /etc/sysconfig/ipvsadm exists
+- name: check /etc/sysconfig/ipvsadm exists
   stat:
     path: /etc/sysconfig/ipvsadm
   register: ipvsadm_file
-  notify: start lvs
 ## If /etc/sysconfig/ipvsadm not exist , create it
 - name: create ipvsadmin service script
   file: path=/etc/sysconfig/ipvsadm state=touch
   when: ipvsadm_file.stat.exists == false
-## 
+## Start LVS 
+- name: ensure LVS is running
+  service:
+    name: ipvsadm
+    state: started
+    enabled: yes
+## Copy Keepalived config
+- name: copy keepalived config to /etc/keepalived
+  file:
+    src: keepalived.conf
+    dest: /etc/keepalived/keepalived.conf
