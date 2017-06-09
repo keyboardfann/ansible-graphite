@@ -21,13 +21,32 @@
 ## Config java tmp folder
 - name: copy riemann sysconfig to /etc/sysconfig
   template:
-    src: riemann.j2
+    src: riemann-sysconfig.j2
     dest: /etc/sysconfig/riemann
+
+## Check /tmp/riemann.service exists
+- name: check /tmp/riemann.service exists
+  stat:
+    path: /tmp/riemann.service
+  register: tmpriemann_existd
+
+## Check  /run/systemd/generator.late/riemann.service exists
+- name: check /run/systemd/generator.late/riemann.service exists
+  stat:
+    path:  /run/systemd/generator.late/riemann.service
+  register: riemann_svc_existd
 
 ## Generate start/stop script
 - name: generate start/stop script
-  command: /usr/lib/systemd/system-generators/systemd-sysv-generator;cp /tmp/riemann.service  /run/systemd/generator.late/
-    run_once: true
+#  command: "/usr/lib/systemd/system-generators/systemd-sysv-generator;/usr/bin/cp /tmp/riemann.service  /run/systemd/generator.late/"
+  command: "/usr/lib/systemd/system-generators/systemd-sysv-generator"
+  run_once: true
+  when: tmpriemann_existd.stat.exists == false
+
+- name: copy start/stop script to /systemd folder
+  command: "/usr/bin/cp /tmp/riemann.service  /run/systemd/generator.late/"
+  run_once: true
+  when: riemann_svc_existd.stat.exists == false
 
 ## Start Riemann
 - name: start Riemann

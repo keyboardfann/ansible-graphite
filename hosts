@@ -41,9 +41,12 @@
 # leading 0s:
 
 ## db-[99:101]-node.example.com
-[keepalived]
+[keepalived-group]
 lvs1  ansible_ssh_host=192.168.100.100
 lvs2  ansible_ssh_host=192.168.100.101
 
-[telegraf1]
+[telegraf-group]
 telegraf ansible_ssh_host=192.168.100.100
+
+[riemann-group]
+riemann ansible_ssh_host=192.168.100.100
