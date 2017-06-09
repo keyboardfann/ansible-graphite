@@ -102,6 +102,7 @@ virtual_server {{keepalived_vip}} {{item.VIP_Port}} {
     }
 
 }
+{% endfor %}
 
 {% for item in LB3 %}
 virtual_server {{keepalived_vip}} {{item.VIP_Port}} {
