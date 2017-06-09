@@ -7,12 +7,15 @@ notification_email:
   - fann.wu@redcypress.com.tw
 notification_email_from: test@redcypress.com.tw
 
-keepalived_bind_interface: eth0
+keepalived_bind_interface: eno16780032
 auth_pass: graphite
-keepalived_vip: 192.168.100.99
+keepalived_vip: 10.62.4.240
 
 LB1: 
-  - {protocal: "TCP", VIP_Port: "80", realserver1_ip: "192.168.100.102", realserver1_port: "80"}
+  - {protocal: "UDP", VIP_Port: "12000", realserver1_ip: "10.62.4.159", realserver1_port: "12004"}
 
 LB2:
-  - {protocal: "TCP", VIP_Port: "81", realserver1_ip: "192.168.100.103", realserver1_port: "80"}
+  - {protocal: "TCP", VIP_Port: "12010", realserver1_ip: "10.62.4.158", realserver1_port: "5555",realserver2_ip: "10.62.4.159" ,realserver2_port: "5555"}
+
+LB3:
+  - {protocal: "TCP", VIP_Port: "12020", realserver1_ip: "10.62.4.160", realserver1_port: "2013",realserver2_ip: "10.62.4.161" ,realserver2_port: "2013"}

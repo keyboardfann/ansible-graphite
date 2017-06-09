@@ -85,6 +85,62 @@ virtual_server {{keepalived_vip}} {{item.VIP_Port}} {
         {% endif %}
 
     }
+
+    real_server {{item.realserver2_ip}} {{item.realserver2_port}} {
+        weight 10
+        {% if item.protocal=="TCP" -%}
+        TCP_CHECK {
+          connect_timeout 10
+        }
+        {% elif item.protocal=="UDP" -%}
+        MISC_CHECK {
+            misc_path"/data01/check_udp.sh {{item.realserver2_ip}} {{item.realserver2_port}}"
+            misc_timeout 10
+        }
+        {% endif %}
+
+    }
+
 }
+
+{% for item in LB3 %}
+virtual_server {{keepalived_vip}} {{item.VIP_Port}} {
+    delay_loop 10
+    lb_algo rr
+    lb_kind DR
+    protocol {{item.protocal}}
+
+    real_server {{item.realserver1_ip}} {{item.realserver1_port}} {
+        weight 10
+        {% if item.protocal=="TCP" -%}
+        TCP_CHECK {
+          connect_timeout 10
+        }
+        {% elif item.protocal=="UDP" -%}
+        MISC_CHECK {
+            misc_path"/data01/check_udp.sh {{item.realserver1_ip}} {{item.realserver1_port}}"
+            misc_timeout 10
+        }
+        {% endif %}
+
+    }
+
+    real_server {{item.realserver2_ip}} {{item.realserver2_port}} {
+        weight 10
+        {% if item.protocal=="TCP" -%}
+        TCP_CHECK {
+          connect_timeout 10
+        }
+        {% elif item.protocal=="UDP" -%}
+        MISC_CHECK {
+            misc_path"/data01/check_udp.sh {{item.realserver2_ip}} {{item.realserver2_port}}"
+            misc_timeout 10
+        }
+        {% endif %}
+
+    }
+
+}
+
 {% endfor %}
 
