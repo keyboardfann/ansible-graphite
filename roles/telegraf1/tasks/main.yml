@@ -6,9 +6,9 @@
     state: present
 ## Copy telegraf internal & other config to /etc/telegraf/telegraf.d/
 - name: Copy telegraf internal & other config to /etc/telegraf/telegraf.d/
-  file: 
+  copy: 
     src: telegraf_internal.conf
-    dest: /etc/telegraf/telegraf.d/telegraf_internal.conf 
+    dest: /etc/telegraf/telegraf.d/
 - name: Copy telegraf internal config to /etc/telegraf/telegraf.d/
   template:
     src: telegraf_statsd_riemann.conf.j2
