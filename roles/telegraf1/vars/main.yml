@@ -1,0 +1,15 @@
+---
+# telegraf gerneral config
+metric_batch_size: 200
+metric_buffer_limit: 1000000
+debug: false
+logfile: "/var/log/telegraf/telegraf.log"
+
+# output riemann
+riemann_ip: 10.62.4.159
+riemann_port: 5555
+
+# input statsd
+statsd_ip: {{ansible_eth1.ipv4.address}}
+statsd_port: 12004
+statsd_allowed_pending_messages: 40000000

@@ -1,0 +1,6 @@
+---
+- name: deploy telegraf1 on host
+  hosts: telegraf1
+  roles:
+    - role: telegraf1
+

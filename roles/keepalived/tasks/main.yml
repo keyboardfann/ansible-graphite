@@ -15,7 +15,7 @@
   file: path=/etc/sysconfig/ipvsadm state=touch
   when: ipvsadm_file.stat.exists == false
 ## Start LVS 
-- name: ensure LVS is running
+- name: start LVS
   service:
     name: ipvsadm
     state: started
@@ -25,3 +25,9 @@
   template: 
     src: keepalived.conf.j2
     dest: /etc/keepalived/keepalived.conf
+- name: start keepalived
+  service:
+    name: keepalived
+    state: started
+    enabled: yes
+
