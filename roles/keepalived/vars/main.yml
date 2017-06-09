@@ -1,2 +1,18 @@
 ---
-# vars file for keepalived
+# Keepalived config
+smtp_server: 127.0.0.1
+notification_email:
+  - juan.gilpin@redcypress.com.tw
+  - izek.chen@redcypress.com.tw
+  - fann.wu@redcypress.com.tw
+notification_email_from: test@redcypress.com.tw
+
+keepalived_bind_interface: eth0
+auth_pass: graphite
+keepalived_vip: 192.168.100.99
+
+LB1: 
+  - {protocal: "TCP", VIP_Port: "80", realserver1_ip: "192.168.100.102", realserver1_port: "80"}
+
+LB2:
+  - {protocal: "TCP", VIP_Port: "81", realserver1_ip: "192.168.100.103", realserver1_port: "80"}

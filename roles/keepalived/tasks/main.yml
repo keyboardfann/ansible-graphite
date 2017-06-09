@@ -22,6 +22,6 @@
     enabled: yes
 ## Copy Keepalived config
 - name: copy keepalived config to /etc/keepalived
-  file:
-    src: keepalived.conf
+  template: 
+    src: keepalived.conf.j2
     dest: /etc/keepalived/keepalived.conf
