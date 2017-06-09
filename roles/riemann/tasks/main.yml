@@ -1,0 +1,37 @@
+---
+## Install ruby & epel repo
+- name: install dependency packages
+  yum: pkg={{ item }} update_cache=yes
+  with_items:
+    - ruby
+    - epel-release
+
+## Install riemann
+- name: install Riemann packages
+  yum:
+    name: https://github.com/riemann/riemann/releases/download/0.2.13/riemann-0.2.13-1.noarch.rpm
+    state: present
+
+## Copy Riemann config
+- name: copy riemann config to /etc/riemann/
+  template: 
+    src: riemann.conf.j2
+    dest: /etc/riemann/riemann.conf
+
+## Config java tmp folder
+- name: copy riemann sysconfig to /etc/sysconfig
+  template:
+    src: riemann.j2
+    dest: /etc/sysconfig/riemann
+
+## Generate start/stop script
+- name: generate start/stop script
+  command: /usr/lib/systemd/system-generators/systemd-sysv-generator;cp /tmp/riemann.service  /run/systemd/generator.late/
+    run_once: true
+
+## Start Riemann
+- name: start Riemann
+  service:
+    name: riemann
+    state: started
+    enabled: yes

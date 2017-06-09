@@ -1,0 +1,7 @@
+---
+- name: deploy riemann on host
+  hosts: all
+  roles:
+    - role: 
+      - williamyeh.oracle-java
+      - riemann
