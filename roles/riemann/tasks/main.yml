@@ -65,7 +65,7 @@
 
 - name: add LB setting to rc.local
   lineinfile: dest=/etc/rc.local line="iptables -t nat -A PREROUTING -p {{ portocol }} -d {{ vip }} -j REDIRECT --dport {{ vip_port }} --to-port {{ real_server_port }}"
-  when: LB_result.stdout != ""
+  when: LB_result.stdout == ""
 
 
 ## Start Riemann
