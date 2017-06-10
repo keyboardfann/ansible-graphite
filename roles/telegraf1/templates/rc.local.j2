@@ -13,4 +13,4 @@
 touch /var/lock/subsys/local
 
 # iptables rule
-iptables -t nat -A PREROUTING -p udp -s {{ vip }} -j REDIRECT --source-port {{ vip_port }} --to-ports {{ real_server_port }} -m comment --comment "redirect {{ vip }} port {{ vip_port }} traffic to port {{ real_server_port }}"
+iptables -t nat -A PREROUTING -p udp -d {{ vip }} -j REDIRECT --dport {{ vip_port }} --to-port {{ real_server_port }} -m comment --comment "redirect \"{{ vip }}\" port \"{{ vip_port }}\" traffic to port \"{{ real_server_port }}\""
