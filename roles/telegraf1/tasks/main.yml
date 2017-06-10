@@ -19,14 +19,14 @@
     dest: /etc/telegraf/telegraf.d/telegraf_statsd_riemann.conf
 
 - iptables:
-  table: nat
-  source: "{{ vip }}"
-  source_port: "{{ vip_port }}"
-  chain: prerouting
-  protocol: udp
-  jump: redirect
-  to_ports: "{{ real_server_port }}"
-  commen: redirect "{{ vip }}" port "{{ vip_port }}"  traffic to port "{{ real_server_port }}"  
+    table: nat
+    source: "{{ vip }}"
+    source_port: "{{ vip_port }}"
+    chain: prerouting
+    protocol: udp
+    jump: redirect
+    to_ports: "{{ real_server_port }}"
+    commen: redirect "{{ vip }}" port "{{ vip_port }}"  traffic to port "{{ real_server_port }}"  
 
 ## start telegraf
 - name: start telegraf service
