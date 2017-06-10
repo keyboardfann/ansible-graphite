@@ -64,7 +64,7 @@
   register: LB_result
 
 - name: add LB setting to rc.local
-  lineinfile: dest=/etc/rc.local line="iptables -t nat -A PREROUTING -p {{ portocol }} -d {{ vip }} -j REDIRECT --dport {{ vip_port }} --to-port {{ real_server_port }}"
+  lineinfile: dest=/etc/rc.local line="iptables -t nat -A PREROUTING -p {{ portocol }} -d {{ vip }} -j REDIRECT --dport {{ vip_port }} --to-port {{ real_server_port }} -m comment --comment \"redirect \"{{ vip }}\" port \"{{ vip_port }}\" traffic to port \"{{ real_server_port }}\"\""
   when: LB_result.stdout != ""
 
 
