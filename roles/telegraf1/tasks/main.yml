@@ -26,7 +26,6 @@
     protocol: "{{ portocol }}"
     jump: REDIRECT
     to_ports: "{{ real_server_port }}"
-    comment: redirect "{{ vip }}" port "{{ vip_port }}" traffic to port "{{ real_server_port }}"
 
 ## Also write iptable rule to /etc/rc.local
 - name: Check LB setting in rc.local
