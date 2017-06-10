@@ -25,7 +25,7 @@ vrrp_instance VI_1 {
     priority {% if play_hosts.index(inventory_hostname)==0 -%}
              100
              {% elif play_hosts.index(inventory_hostname)==1 -%}
-             101
+             50
              {%- endif %}
 
     advert_int 1
@@ -74,8 +74,9 @@ virtual_server {{keepalived_vip}} {{item.VIP_Port}} {
     real_server {{item.realserver1_ip}} {{item.realserver1_port}} {
         weight 10
         {% if item.protocal=="TCP" -%}
-        TCP_CHECK {
-          connect_timeout 10
+        MISC_CHECK {
+          misc_path "/data01/check_port.pl -h 10.62.4.159 -p 5555 -w 5 -c 10"
+          misc_timeout 10
         }
         {% elif item.protocal=="UDP" -%}
         MISC_CHECK {
@@ -89,8 +90,9 @@ virtual_server {{keepalived_vip}} {{item.VIP_Port}} {
     real_server {{item.realserver2_ip}} {{item.realserver2_port}} {
         weight 10
         {% if item.protocal=="TCP" -%}
-        TCP_CHECK {
-          connect_timeout 10
+        MISC_CHECK {
+          misc_path "/data01/check_port.pl -h 10.62.4.159 -p 5555 -w 5 -c 10"
+          misc_timeout 10
         }
         {% elif item.protocal=="UDP" -%}
         MISC_CHECK {

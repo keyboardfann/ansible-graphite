@@ -5,26 +5,42 @@
   with_items:
     - ipvsadm
     - keepalived
+    - nmap
+
 ## Check /etc/sysconfig/ipvsadm exists
 - name: check /etc/sysconfig/ipvsadm exists
   stat:
     path: /etc/sysconfig/ipvsadm
   register: ipvsadm_file
+
 ## If /etc/sysconfig/ipvsadm not exist , create it
 - name: create ipvsadmin service script
   file: path=/etc/sysconfig/ipvsadm state=touch
   when: ipvsadm_file.stat.exists == false
+
 ## Start LVS 
 - name: start LVS
   service:
     name: ipvsadm
     state: started
     enabled: yes
+
 ## Copy Keepalived config
 - name: copy keepalived config to /etc/keepalived
   template: 
     src: keepalived.conf.j2
     dest: /etc/keepalived/keepalived.conf
+
+- name: copy check udp script to /data01
+  copy:
+    src: check_udp.sh
+    dest: /data01/check_udp.sh
+
+- name: copy check tcp script to /data01
+  copy:
+    src: check_port.pl
+    dest: /data01/check_port.pl
+
 - name: start keepalived
   service:
     name: keepalived
