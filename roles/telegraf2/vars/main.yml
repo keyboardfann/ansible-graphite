@@ -1,0 +1,20 @@
+---
+# telegraf gerneral config
+metric_batch_size: 200
+metric_buffer_limit: 1000000
+debug: false
+logfile: "/var/log/telegraf/telegraf.log"
+
+# output graphite
+graphite_servers:
+  - tng1398:2013
+  - tng1399:2013
+
+# input kafka
+topic: telegraf
+zookeeper_servers:
+  - tng1398:2181
+  - tng1399:2181
+  - tng1400:2181
+
+consumer_group: telegraf_metrics_consumers
