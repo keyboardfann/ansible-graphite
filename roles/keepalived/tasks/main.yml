@@ -35,13 +35,13 @@
   copy:
     src: check_udp.sh
     dest: /data01/check_udp.sh
-    mode: 0644
+    mode: 0744
 
 - name: copy check tcp script to /data01
   copy:
     src: check_port.pl
     dest: /data01/check_port.pl
-    mode: 0644
+    mode: 0744
 
 - name: start keepalived
   service:
