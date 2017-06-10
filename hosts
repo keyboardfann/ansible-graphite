@@ -53,3 +53,8 @@ riemann ansible_ssh_host=192.168.100.100
 
 [telegraf2-group]
 telegraf2 ansible_ssh_host=192.168.100.100
+
+[kafka-group]
+kafka1 ansible_ssh_host=192.168.100.102
+kafka2 ansible_ssh_host=192.168.100.103
+kafka3 ansible_ssh_host=192.168.100.104

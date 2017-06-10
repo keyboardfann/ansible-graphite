@@ -1,0 +1,68 @@
+---
+## copy confluent repo
+- name: copy confluent repo to /etc/yum.repos.d/
+  copy:
+    src: confluent.repo
+    dest: /etc/yum.repos.d/confluent.repo
+
+## Install kafka, zookeeper
+- name: install Confluent platform
+  yum: pkg={{ item }} update_cache=yes
+  with_items:
+    - confluent-platform-oss-2.11
+
+## Copy Zookeeper config
+- name: copy zookeeper config to /etc/kafka/
+  template: 
+    src: zookeeper.properties.j2
+    dest: /etc/kafka/zookeeper.properties
+
+## Ensure zookeeper data dir exist
+- name: Ensure zookeeper data dir exist
+  file:
+    path: "{{ zookeeper_data_dir }}"
+    state: directory
+
+## Ensure zookeeper log dir exist
+- name: Ensure zookeeper log dir exist
+  file:
+    path: "{{ zookeeper_log_dir }}"
+    state: directory
+
+## Ensure zookeeper log dir exist
+- name: Ensure zookeeper version-2 dir exist
+  file:
+    path: "{{ zookeeper_data_dir }}/version-2" 
+    state: directory
+
+## Copy Zookeeper id file to zookeeper data folder
+- name: copy zookeeper config to zookeeper data folder
+  template:
+   src: myid.j2
+   dest: "{{ zookeeper_data_dir }}/myid"
+
+- name: copy zookeeper systemctl start/stop script to /etc/lib/systemd/system
+  copy:
+    src: confluent-zookeeper.service
+    dest: /usr/lib/systemd/system/confluent-zookeeper.service
+
+- name: copy zookeeper start script to /usr/bin/
+  template:
+    src: zookeeper-server-start.j2
+    dest: /usr/bin/zookeeper-server-start
+
+- name: copy kafka config to /etc/kafka
+  template:
+    src: server.properties.j2
+    dest: /etc/kafka/server.properties
+
+- name: copy kafka systemctl start/stop script to /etc/lib/systemd/system
+  copy:
+    src: confluent-kafka.service
+    dest: /usr/lib/systemd/system/confluent-kafka.service
+
+- name: copy kafka start script to /usr/bin/
+  template:
+    src: kafka-server-start.j2
+    dest: /usr/bin/kafka-server-start
+

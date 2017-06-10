@@ -1,0 +1,19 @@
+maxClientCnxns=0
+# The number of milliseconds of each tick
+tickTime=2000
+# The number of ticks that the initial
+# synchronization phase can take
+initLimit=10
+# The number of ticks that can pass between
+# sending a request and getting an acknowledgement
+syncLimit=5
+# the directory where the snapshot is stored.
+dataDir={{ zookeeper_data_dir }}
+# the port at which the clients will connect
+clientPort=2181
+# the directory where the transaction logs are stored.
+dataLogDir={{ zookeeper_log_dir }}
+#Zookeeper Cluster
+{% for item in range(1,zookeeper_servers|length +1) %}
+server.{{item}}={{ zookeeper_servers[item-1] }}:2888:3888
+{% endfor%}

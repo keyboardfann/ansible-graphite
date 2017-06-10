@@ -1,0 +1,26 @@
+---
+# Zookeeper config
+zookeeper_servers:
+  - tng1398
+  - tng1399
+  - tng1400
+zookeeper_port: 2181
+zookeeper_data_dir: /data01/zookeeper/
+zookeeper_log_dir: /data01/zookeeper/
+zookeeper_heapsize: 1g
+
+# Kafka config
+kafka_brokers:
+  - tng1398
+  - tng1399
+  - tng1400
+
+kafka_log_dir: /data01/kafka/
+num_partitions: 6
+log_retention_hours: 168
+kafka_heapsize: 4g
+JMX_Port: 9999
+
+# Kafka internal metrics to graphite LB
+graphite_server_LB: 10.62.4.161
+graphite_port: 2013
