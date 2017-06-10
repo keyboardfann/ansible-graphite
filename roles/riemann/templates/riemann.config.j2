@@ -1,0 +1,86 @@
+; -*- mode: clojure; -*-
+; vim: filetype=clojure
+
+(logging/init {:file "{{ log_path }}"})
+
+; Listen on the local interface over TCP (5555), UDP (5555), and websockets
+; (5556)
+(let [host "0.0.0.0"]
+  (tcp-server {:host host})
+  (udp-server {:host host})
+  (ws-server  {:host host}))
+
+; Expire old events from the index every 5 seconds.
+(periodically-expire 5)
+
+
+; Setting Riemann internal metrics interval
+(instrumentation {:interval {{ internal_metrics_interval }} :enabled? true})
+
+;(let [index (index)]
+;  ; Inbound events will be passed to these streams:
+;  (streams
+;    (default :ttl 60
+;      ; Index all events immediately.
+;      index
+;
+;      ; Log expired events.
+;      (expired
+;        (fn [event] (info "expired" event))))))
+
+; Import kafka package
+(require '[kinsky.client :as client])
+
+; Parse field and rename field
+(defn graphite-path-graphite
+  "Constructs a path for an event. Takes the hostname fqdn, reversed,
+              followed by the service, with spaces converted to dots."
+  [event]
+  (let [;; replace /value by "" , replace all "/" by "." in service
+        service (clojure.string/replace (:service event) #"/value" "")
+        service (clojure.string/replace (:service event) #"/" ".")
+        ;; returns the statd metric type using :metric_type value
+        metric-type (condp = (:metric_type event)
+                      "counter" "stats_counts"
+                      "gauge"  "stats.gauges"
+                      "timing" "stats.timers"
+                      "set"    "stats.sets"
+		)]
+    (str metric-type "." service)))
+	
+; Generate Graphite format
+(defn converts-to-graphite
+  [event]
+  (str (clojure.string/join " " [(graphite-path-graphite event)
+                                 (riemann.graphite/graphite-metric event)
+                                 (int (:time event))])
+   ))
+
+
+; Kafka value serializer
+(defn graphite-serializer
+  []
+  (client/serializer
+    (fn [_ payload] (some-> payload converts-to-graphite .getBytes))))
+
+; Kafka output setting
+(def kafka-output (kafka {:bootstrap.servers "{{ kafka_brokers|join(",") }}"
+                          :key.serializer  client/string-serializer
+                          :value.serializer graphite-serializer
+                          :acks 1
+                         }))
+
+
+; service (not riemann or not telegraf-health), output to kafka. service is riemann( riemann health metrics ) or telegraf-health( telegraf metrics ), output to graphite directly
+(streams
+  #(info %)
+(where (not (or (service #"^riemann ")(service #"^telegraf-health*")))
+  (kafka-output "telegraf"))
+(where  (service #"^riemann ")
+  (graphite {:host "{{ graphite_server_ip }}"
+             :port {{ graphite_server_port }} } ))
+(where  (service #"^telegraf-health*")
+  (graphite {:host "{{ graphite_server_ip }}"
+             :port {{ graphite_server_port }} } ))
+)
+

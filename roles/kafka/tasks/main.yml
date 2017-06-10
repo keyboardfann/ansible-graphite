@@ -36,7 +36,7 @@
     state: directory
 
 ## Copy Zookeeper id file to zookeeper data folder
-- name: copy zookeeper config to zookeeper data folder
+- name: copy zookeeper id file to zookeeper data folder
   template:
    src: myid.j2
    dest: "{{ zookeeper_data_dir }}/myid"
@@ -56,7 +56,7 @@
     src: server.properties.j2
     dest: /etc/kafka/server.properties
 
-- name: copy kafka systemctl start/stop script to /etc/lib/systemd/system
+- name: copy kafka systemctl start/stop script to /usr/lib/systemd/system
   copy:
     src: confluent-kafka.service
     dest: /usr/lib/systemd/system/confluent-kafka.service

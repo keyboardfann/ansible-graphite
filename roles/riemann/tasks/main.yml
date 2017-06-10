@@ -15,8 +15,8 @@
 ## Copy Riemann config
 - name: copy riemann config to /etc/riemann/
   template: 
-    src: riemann.conf.j2
-    dest: /etc/riemann/riemann.conf
+    src: riemann.config.j2
+    dest: /etc/riemann/riemann.config
 
 ## Config java tmp folder
 - name: copy riemann sysconfig to /etc/sysconfig
