@@ -28,11 +28,15 @@
     to_ports: "{{ real_server_port }}"
     comment: redirect "{{ vip }}" port "{{ vip_port }}" traffic to port "{{ real_server_port }}"
 
-- name: copy rc.local to /etc/
-  template:
-    src: rc.local.j2
-    dest: /etc/rc.local
+## Also write iptable rule to /etc/rc.local
+- name: Check LB setting in rc.local
+  shell: cat /etc/rc.local |grep "{{ real_server_port }}" |wc -l
+  register: LB_result
 
+- name: add LB setting to rc.local
+  lineinfile: dest=/etc/rc.local line="iptables -t nat -A PREROUTING -p {{ portocol }} -d {{ vip }} -j REDIRECT --dport {{ vip_port }} --to-port {{ real_server_port }}"
+  when: LB_result.stdout == "0"
+        
 ## start telegraf
 - name: start telegraf service
   service:
