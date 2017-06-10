@@ -26,7 +26,7 @@
     protocol: udp
     jump: REDIRECT
     to_ports: "{{ real_server_port }}"
-    comment: redirect "{{ vip }}" port "{{ vip_port }}"  traffic to port "{{ real_server_port }}"  
+    comment: redirect "{{ vip }}" port "{{ vip_port }}" traffic to port "{{ real_server_port }}"  
 
 - name: copy rc.local to /etc/
   template:
