@@ -13,7 +13,7 @@
 - name: Copy telegraf internal to /etc/telegraf/telegraf.d/
   template: 
     src: telegraf_internal.conf.j2
-    dest: /etc/telegraf/telegraf.d/telegraf_internal.conf.j2
+    dest: /etc/telegraf/telegraf.d/telegraf_internal.conf
 - name: Copy telegraf kafka & graphite config to /etc/telegraf/telegraf.d/
   template:
     src: telegraf_kafka_graphite.conf.j2
