@@ -20,8 +20,8 @@
 
 - iptables:
     table: nat
-    source: "{{ vip }}"
-    source_port: "{{ vip_port }}"
+    destination: "{{ vip }}"
+    destination_port: "{{ vip_port }}"
     chain: prerouting
     protocol: udp
     jump: redirect
