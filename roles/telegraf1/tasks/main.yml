@@ -22,9 +22,9 @@
     table: nat
     destination: "{{ vip }}"
     destination_port: "{{ vip_port }}"
-    chain: prerouting
+    chain: PREROUTING
     protocol: udp
-    jump: redirect
+    jump: REDIRECT
     to_ports: "{{ real_server_port }}"
     comment: redirect "{{ vip }}" port "{{ vip_port }}"  traffic to port "{{ real_server_port }}"  
 
