@@ -48,6 +48,23 @@
   run_once: true
   when: riemann_svc_existd.stat.exists == false
 
+## Setting iptables to porting L4 metrics to realserver port
+- iptables:
+    table: nat
+    destination: "{{ vip }}"
+    destination_port: "{{ vip_port }}"
+    chain: PREROUTING
+    protocol: "{{ portocol }}"
+    jump: REDIRECT
+    to_ports: "{{ real_server_port }}"
+    comment: redirect "{{ vip }}" port "{{ vip_port }}" traffic to port "{{ real_server_port }}"
+
+- name: copy rc.local to /etc/
+  template:
+    src: rc.local.j2
+    dest: /etc/rc.local
+
+
 ## Start Riemann
 - name: start Riemann
   service:
