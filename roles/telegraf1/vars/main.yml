@@ -1,8 +1,9 @@
 ---
 
 # VIP
-vip: "10.62.4.240"
+vip: 10.62.4.240
 vip_port: 12000
+service_portocol: udp
 real_server_port: 12004
 
 # telegraf gerneral config
