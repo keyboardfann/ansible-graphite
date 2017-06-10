@@ -1,6 +1,6 @@
 ---
 - name: deploy zookeeper & kafka on host
-  hosts: kafka-group
+  hosts: all
   roles:
     - { role: sleighzy.java-8 }
     - kafka
