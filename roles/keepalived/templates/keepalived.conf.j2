@@ -75,7 +75,7 @@ virtual_server {{keepalived_vip}} {{item.VIP_Port}} {
         weight 10
         {% if item.protocal=="TCP" -%}
         MISC_CHECK {
-          misc_path "/data01/check_port.pl -h 10.62.4.159 -p 5555 -w 5 -c 10"
+          misc_path "/data01/check_port.pl -h {{item.realserver1_ip}} -p {{item.realserver1_port}} -w 5 -c 10"
           misc_timeout 10
         }
         {% elif item.protocal=="UDP" -%}
@@ -91,7 +91,7 @@ virtual_server {{keepalived_vip}} {{item.VIP_Port}} {
         weight 10
         {% if item.protocal=="TCP" -%}
         MISC_CHECK {
-          misc_path "/data01/check_port.pl -h 10.62.4.159 -p 5555 -w 5 -c 10"
+          misc_path "/data01/check_port.pl -h {{item.realserver2_ip}} -p {{item.realserver2_port}} -w 5 -c 10"
           misc_timeout 10
         }
         {% elif item.protocal=="UDP" -%}
