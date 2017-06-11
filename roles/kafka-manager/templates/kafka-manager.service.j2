@@ -1,0 +1,14 @@
+[Unit]
+Description=Kafka Manager
+After=network.target
+ 
+[Service]
+Type=simple
+StandardOutput=syslog
+StandardError=syslog
+ExecStart=/usr/bin/kafka-manager -Dconfig.file=/etc/kafka-manager/application.conf -Dapplication.home=/data/ -Dhttp.address={{ ansible_fqdn }} -Dhttp.port={{ web_port }}
+ExecReload=/bin/kill -USR1 $MAINPID
+PIDFile=/var/run/kafkamanager.pid
+ 
+[Install]
+WantedBy=multi-user.target

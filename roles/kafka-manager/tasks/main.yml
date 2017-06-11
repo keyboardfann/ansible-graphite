@@ -1,0 +1,24 @@
+---
+- name: copy kafka-manager rpm to /data01 
+  copy:
+    src: kafka-manager-1.3.0.4-1.noarch.rpm
+    dest: /data01/kafka-manager-1.3.3.7-1.noarch.rpm
+
+- name: install kafka manager
+  yum: 
+    name: /data01/kafka-manager-1.3.3.7-1.noarch.rpm
+
+- name: copy kafka-manager config to /etc/kafka-manager/
+  template: 
+    src: application.conf.j2
+    dest: /etc/kafka-manager/application.conf
+
+- name: copy kafka-manager start/stop script to /usr/lib/systemd/system/
+  template:
+    src: kafka-manager.service.j2
+    dest: /usr/lib/systemd/system/kafka-manager.service
+
+- service:
+    name: kafka-manager
+    state: started
+    enabled: yes
