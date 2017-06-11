@@ -66,3 +66,12 @@
     src: kafka-server-start.j2
     dest: /usr/bin/kafka-server-start
 
+- name: copy kafka export metrics to graphite library to /usr/share/java/kafka/
+  copy:
+    src: kafka-graphite-1.0.4.jar
+    dest: /usr/share/java/kafka/kafka-graphite-1.0.4.jar
+
+- name: copy kafka metrics collector library to /usr/share/java/kafka/
+  copy:
+    src: metrics-graphite-2.2.0.jar
+    dest: /usr/share/java/kafka/metrics-graphite-2.2.0.jar
