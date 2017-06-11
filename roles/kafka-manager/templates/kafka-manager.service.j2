@@ -6,7 +6,7 @@ After=network.target
 Type=simple
 StandardOutput=syslog
 StandardError=syslog
-ExecStart=/usr/bin/kafka-manager -Dconfig.file=/etc/kafka-manager/application.conf -Dapplication.home=/data/ -Dhttp.address={{ ansible_fqdn }} -Dhttp.port={{ web_port }}
+ExecStart=/usr/share/kafka-manager/bin/kafka-manager -Dconfig.file=/usr/share/kafka-manager/conf/application.conf -Dapplication.home=/data/ -Dhttp.address={{ ansible_fqdn }} -Dhttp.port={{ web_port }}
 ExecReload=/bin/kill -USR1 $MAINPID
 PIDFile=/var/run/kafkamanager.pid
  
