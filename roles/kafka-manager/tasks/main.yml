@@ -11,7 +11,7 @@
 - name: copy kafka-manager config to /etc/kafka-manager/
   template: 
     src: application.conf.j2
-    dest: /etc/kafka-manager/application.conf
+    dest: /usr/share/kafka-manager/conf/application.conf
 
 - name: copy kafka-manager start/stop script to /usr/lib/systemd/system/
   template:
