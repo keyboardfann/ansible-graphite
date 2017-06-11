@@ -34,7 +34,7 @@ akka {
 }
 
 
-basicAuthentication.enabled={{ basicAuthentication_enabled }}
+basicAuthentication.enabled={{ basicAuthentication_enabled|lower }}
 basicAuthentication.username="{{ basicAuthentication_username }}"
 basicAuthentication.password="{{ basicAuthentication_password }}"
 basicAuthentication.realm="Kafka-Manager"
