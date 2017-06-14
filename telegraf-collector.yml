@@ -1,6 +1,6 @@
 ---
-- name: deploy telegraf1 on host
+- name: deploy telegraf-collector on host
   hosts: all
   roles:
-    - role: telegraf1
+    - role: telegraf-collector
 

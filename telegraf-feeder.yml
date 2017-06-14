@@ -1,6 +1,6 @@
 ---
-- name: deploy telegraf2 on host
+- name: deploy telegraf-feeder on host
   hosts: all
   roles:
-    - role: telegraf2
+    - role: telegraf-feeder
 
