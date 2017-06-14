@@ -24,5 +24,6 @@
     mode: 0755
   when:  (first_install  == true) and (ansible_fqdn in mysql_bootstrap_server)
 
-- script: "{{ mysql_data_dir }}/create_ha_user.sh"
+- name: init bootstrap DB
+  command: /bin/sh "{{ mysql_data_dir }}/create_ha_user.sh"
   when:  (first_install  == true) and (ansible_fqdn in mysql_bootstrap_server)
