@@ -1,0 +1,27 @@
+---
+
+- name: install percona repo packages
+  yum: 
+    name: http://www.percona.com/downloads/percona-release/redhat/0.1-4/percona-release-0.1-4.noarch.rpm
+    state: present
+
+- name: install percona-xtradb packages
+  yum: pkg={{ item }} update_cache=yes
+  with_items:
+    - Percona-XtraDB-Cluster-56
+    - expect
+
+## Copy Mysql config
+- name: Copy mysql config to /etc/
+  template:
+    src: my.cnf.j2
+    dest: /etc/my.cnf
+
+- name: Copy init script to /data
+  template:
+    src: create_ha_user.sh.j2
+    dest: /data/create_ha_user.sh
+  when:  (first_install  == true) and (ansible_fqdn in mysql_bootstrap_server)
+
+- script: /data/create_ha_user.sh
+  when:  (first_install  == true) and (ansible_fqdn in mysql_bootstrap_server)

@@ -1,0 +1,39 @@
+# Template my.cnf for PXC
+# Edit to your requirements.
+
+[mysqld]
+
+log_bin
+
+binlog_format                  = ROW
+innodb_buffer_pool_size        = 100M
+innodb_flush_log_at_trx_commit = 0
+innodb_flush_method            = O_DIRECT
+innodb_log_files_in_group      = 2
+innodb_log_file_size           = 20M
+innodb_file_per_table          = 1
+datadir                        = /var/lib/mysql
+
+wsrep_cluster_address          = gcomm://{{ mysql_bootstrap_server }},{{ mysql_servers|join(",") }}
+wsrep_provider                 = /usr/lib64/galera3/libgalera_smm.so
+
+wsrep_slave_threads            = 8
+wsrep_cluster_name             = {{ cluster_name }}
+wsrep_node_name                = {{ ansible_hostname }}
+wsrep_node_address             = {{ ip }}
+
+# Authentication for SST method
+wsrep_sst_auth="sstuser:s3cret"
+   
+# MyISAM storage engine has only experimental support
+default_storage_engine=InnoDB
+
+innodb_autoinc_lock_mode       = 2
+
+[mysqld_safe]
+pid-file = /run/mysqld/mysql.pid
+syslog
+
+
+!includedir /etc/my.cnf.d
+

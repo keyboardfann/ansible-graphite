@@ -1,0 +1,6 @@
+---
+- name: deploy Percona Xtradb on host
+  hosts: all
+  roles:
+    - role: percona-xtradb
+
