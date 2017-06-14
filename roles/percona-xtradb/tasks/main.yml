@@ -20,7 +20,7 @@
 ## For Bootstrap server
 - name: Copy bootstrap init script to "{{ mysql_data_dir }}"
   template:
-    src: init_bootstrap_server.j2
+    src: init_bootstrap_server.sh.j2
     dest: "{{ mysql_data_dir }}/init_bootstrap_server.sh"
     mode: 0755
   when:  (first_install  == true) and (ansible_fqdn in mysql_bootstrap_server)
