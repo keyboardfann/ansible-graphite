@@ -1,0 +1,6 @@
+---
+- name: deploy memcached on host
+  hosts: all
+  roles:
+    - role: memcached
+
