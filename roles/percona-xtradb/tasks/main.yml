@@ -17,13 +17,27 @@
     src: my.cnf.j2
     dest: /etc/my.cnf
 
-- name: Copy init script to /data
+## For Bootstrap server
+- name: Copy bootstrap init script to "{{ mysql_data_dir }}"
   template:
-    src: create_ha_user.sh.j2
-    dest: "{{ mysql_data_dir }}/create_ha_user.sh"
+    src: init_bootstrap_server.j2
+    dest: "{{ mysql_data_dir }}/init_bootstrap_server.sh"
     mode: 0755
   when:  (first_install  == true) and (ansible_fqdn in mysql_bootstrap_server)
 
 - name: init bootstrap DB
-  command: /bin/sh "{{ mysql_data_dir }}/create_ha_user.sh"
+  command: /bin/sh "{{ mysql_data_dir }}/init_bootstrap_server.sh"
   when:  (first_install  == true) and (ansible_fqdn in mysql_bootstrap_server)
+
+## For other server
+- name: Copy other server init script to "{{ mysql_data_dir }}"
+  template:
+    src: init_mysql_server.sh.j2
+    dest: "{{ mysql_data_dir }}/init_mysql_server.sh"
+    mode: 0755
+  when:  (first_install  == true) and (ansible_fqdn not in mysql_bootstrap_server)
+
+- name: init bootstrap DB
+  command: /bin/sh "{{ mysql_data_dir }}/init_mysql_server.sh"
+  when:  (first_install  == true) and (ansible_fqdn not in mysql_bootstrap_server)
+
