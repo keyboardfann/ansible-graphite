@@ -20,8 +20,9 @@
 - name: Copy init script to /data
   template:
     src: create_ha_user.sh.j2
-    dest: /data/create_ha_user.sh
+    dest: "{{ mysql_data_dir }}"/create_ha_user.sh
+    mode: 0755
   when:  (first_install  == true) and (ansible_fqdn in mysql_bootstrap_server)
 
-- script: /data/create_ha_user.sh
+- script: "{{ mysql_data_dir }}"/create_ha_user.sh
   when:  (first_install  == true) and (ansible_fqdn in mysql_bootstrap_server)

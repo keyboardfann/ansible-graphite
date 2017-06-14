@@ -13,6 +13,7 @@ first_install: true
 # Mysql setting
 cluster_name: monitor_cluster
 ip: "{{ ansible_eno16780032.ipv4.address }}"
+mysql_data_dir: /data01/mysql
 
 mysql_root_password: dMIBVKLaiaIwyC7
 mysql_grphite_password: graphitePW02Vxzsigavms
