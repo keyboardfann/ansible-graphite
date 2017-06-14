@@ -8,11 +8,11 @@ mysql_servers:
 
 
 ## It's important to set true only in the first time
-first_install: true
+first_install: false
 
 # Mysql setting
 cluster_name: monitor_cluster
 ip: "{{ ansible_eno16780032.ipv4.address }}"
 
 mysql_root_password: dMIBVKLaiaIwyC7
-mysql_grphite_password: eD7Ikvwhl6ODy5S
+mysql_grphite_password: graphitePW02Vxzsigavms
