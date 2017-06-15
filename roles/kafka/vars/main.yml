@@ -17,7 +17,7 @@ kafka_brokers:
 
 kafka_log_dir: /data01/kafka/
 num_partitions: 6
-log_retention_hours: 168
+log_retention_hours: 96
 kafka_heapsize: 4g
 JMX_Port: 9999
 
