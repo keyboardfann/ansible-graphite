@@ -1,0 +1,13 @@
+#!/bin/sh
+
+graphite_mysql_root_password={{ mysql_root_password }}
+graphite_mysql_graphite_password={{ mysql_grphite_password }}
+
+##Create graphite user
+echo "Create Graphite user"
+mysql -e "CREATE DATABASE graphite;" -u root -p$graphite_mysql_root_password
+mysql -e "GRANT ALL PRIVILEGES ON graphite.* TO graphite@localhost IDENTIFIED BY \"$graphite_mysql_graphite_password\";" -u root -p$graphite_mysql_root_password
+mysql -e 'FLUSH PRIVILEGES;' -u root -p$graphite_mysql_root_password
+
+## Init django db
+python /opt/graphite/webapp/graphite/manage.py syncdb --noinput

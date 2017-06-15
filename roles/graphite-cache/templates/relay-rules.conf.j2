@@ -1,0 +1,9 @@
+{% if relay_method == "rules" %}
+{% for item in relay_rule %}
+[{{ item.metric_name }}]
+pattern = {{ item.pattern }}
+destinations = {{ item.destinations }}
+continue = {{ item.continue }}
+
+{% endfor %}
+{% endif%}
