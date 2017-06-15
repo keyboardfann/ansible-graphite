@@ -1,6 +1,6 @@
 ---
 - name: deploy graphite-cache on host
-  hosts: graphite-webhead-group
+  hosts: all
   roles:
     - graphite-web
 
