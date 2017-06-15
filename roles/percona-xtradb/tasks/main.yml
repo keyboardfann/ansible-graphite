@@ -21,30 +21,30 @@
 # Ensure mysql data dir exist
 - name: Ensure mysql data dir exist
   file:
-      path: "{{ mysql_data_dir }}"
-          state: directory
+    path: "{{ mysql_data_dir }}"
+    state: directory
 
 ## For Bootstrap server
-- name: Copy bootstrap init script to "{{ mysql_data_dir }}"
+- name: Copy bootstrap init script to /var/tmp/
   template:
     src: init_bootstrap_server.sh.j2
-    dest: "{{ mysql_data_dir }}/init_bootstrap_server.sh"
+    dest: /var/tmp/init_bootstrap_server.sh"
     mode: 0755
   when:  (first_install  == true) and (ansible_fqdn in mysql_bootstrap_server)
 
 - name: init bootstrap DB
-  command: /bin/sh "{{ mysql_data_dir }}/init_bootstrap_server.sh"
+  command: /bin/sh /var/tmp/init_bootstrap_server.sh
   when:  (first_install  == true) and (ansible_fqdn in mysql_bootstrap_server)
 
 ## For other server
-- name: Copy other server init script to "{{ mysql_data_dir }}"
+- name: Copy non bootstrap server init script to /var/tmp
   template:
     src: init_mysql_server.sh.j2
-    dest: "{{ mysql_data_dir }}/init_mysql_server.sh"
+    dest: /var/tmp/init_mysql_server.sh
     mode: 0755
   when:  (first_install  == true) and (ansible_fqdn not in mysql_bootstrap_server)
 
-- name: init bootstrap DB
+- name: init non bootstrap DB
   command: /bin/sh "{{ mysql_data_dir }}/init_mysql_server.sh"
   when:  (first_install  == true) and (ansible_fqdn not in mysql_bootstrap_server)
 
