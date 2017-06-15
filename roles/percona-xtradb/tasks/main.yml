@@ -1,5 +1,6 @@
 ---
 
+## Install Percona XtraDB
 - name: install percona repo packages
   yum: 
     name: http://www.percona.com/downloads/percona-release/redhat/0.1-4/percona-release-0.1-4.noarch.rpm
@@ -16,6 +17,12 @@
   template:
     src: my.cnf.j2
     dest: /etc/my.cnf
+
+# Ensure mysql data dir exist
+- name: Ensure mysql data dir exist
+  file:
+      path: "{{ mysql_data_dir }}"
+          state: directory
 
 ## For Bootstrap server
 - name: Copy bootstrap init script to "{{ mysql_data_dir }}"
