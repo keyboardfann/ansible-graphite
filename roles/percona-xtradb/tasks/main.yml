@@ -28,7 +28,7 @@
 - name: Copy bootstrap init script to /var/tmp/
   template:
     src: init_bootstrap_server.sh.j2
-    dest: /var/tmp/init_bootstrap_server.sh"
+    dest: /var/tmp/init_bootstrap_server.sh
     mode: 0755
   when:  (first_install  == true) and (ansible_fqdn in mysql_bootstrap_server)
 
