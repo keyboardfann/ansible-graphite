@@ -8,7 +8,7 @@ mysql_servers:
 
 
 ## It's important to set true only in the first time
-first_install: false
+first_install: true
 
 # Mysql setting
 cluster_name: monitor_cluster

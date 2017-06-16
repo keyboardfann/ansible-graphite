@@ -38,7 +38,7 @@ storage_schema:
 
 # Graphite web
 ## It's important to set true only in the first time
-first_install: false
+first_install: true
 graphite_bootstrap_server: tng1398.tng.mgsops.com
 
 secret_key: du2pJJgPoknwbxe
