@@ -45,6 +45,6 @@
   when:  (first_install  == true) and (ansible_fqdn not in mysql_bootstrap_server)
 
 - name: init non bootstrap DB
-  command: /bin/sh "{{ mysql_data_dir }}/init_mysql_server.sh"
+  command: /bin/sh "/var/tmp/init_mysql_server.sh"
   when:  (first_install  == true) and (ansible_fqdn not in mysql_bootstrap_server)
 
