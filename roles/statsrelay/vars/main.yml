@@ -1,8 +1,9 @@
 ---
 # statsrelay
+ipaddress: {{ ansible_eno16780032.ipv4.address }}
 statsrelay:
-  - {bindip: "10.62.4.158",bindport: "12001",prefix: "Operations.Monitor.{{ ansible_hostname }}.statsrelay1",backend: [ "10.62.4.159:12004:1" ]}
-  - {bindip: "10.62.4.158",bindport: "12002",prefix: "Operations.Monitor.{{ ansible_hostname }}.statsrelay2",backend: [ "10.62.4.159:12004:1" ]}
-  - {bindip: "10.62.4.158",bindport: "12003",prefix: "Operations.Monitor.{{ ansible_hostname }}.statsrelay3",backend: [ "10.62.4.159:12004:1" ]}
-  - {bindip: "10.62.4.158",bindport: "12004",prefix: "Operations.Monitor.{{ ansible_hostname }}.statsrelay4",backend: [ "10.62.4.159:12004:1" ]}
-  - {bindip: "10.62.4.158",bindport: "12005",prefix: "Operations.Monitor.{{ ansible_hostname }}.statsrelay5",backend: [ "10.62.4.159:12004:1" ]}
+  - {bindip: "{{ ipaddress }}",bindport: "12001",prefix: "Operations.Monitor.{{ ansible_hostname }}.statsrelay1",backend: [ "10.62.4.159:12004:1" ]}
+  - {bindip: "{{ ipaddress }}",bindport: "12002",prefix: "Operations.Monitor.{{ ansible_hostname }}.statsrelay2",backend: [ "10.62.4.159:12004:1" ]}
+  - {bindip: "{{ ipaddress }}",bindport: "12003",prefix: "Operations.Monitor.{{ ansible_hostname }}.statsrelay3",backend: [ "10.62.4.159:12004:1" ]}
+  - {bindip: "{{ ipaddress }}",bindport: "12004",prefix: "Operations.Monitor.{{ ansible_hostname }}.statsrelay4",backend: [ "10.62.4.159:12004:1" ]}
+  - {bindip: "{{ ipaddress }}",bindport: "12005",prefix: "Operations.Monitor.{{ ansible_hostname }}.statsrelay5",backend: [ "10.62.4.159:12004:1" ]}
