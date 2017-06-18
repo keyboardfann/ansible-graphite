@@ -36,9 +36,3 @@
   lineinfile: dest=/etc/rc.local line="iptables -t nat -A PREROUTING -p {{ portocol }} -d {{ vip }} -j REDIRECT --dport {{ vip_port }} --to-port {{ real_server_port }}"
   when: LB_result.stdout == "0"
         
-## start telegraf
-- name: start telegraf service
-  service:
-    name: telegraf
-    state: started
-    enabled: yes

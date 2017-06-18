@@ -17,8 +17,3 @@
   template:
     src: kafka-manager.service.j2
     dest: /usr/lib/systemd/system/kafka-manager.service
-
-- service:
-    name: kafka-manager
-    state: started
-    enabled: yes

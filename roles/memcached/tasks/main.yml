@@ -11,9 +11,3 @@
     src: memcached
     dest: /etc/sysconfig/memcached
 
-## Start memcached
-- name: Start memcached service
-  service:
-    name: memcached
-    state: started
-    enabled: yes
