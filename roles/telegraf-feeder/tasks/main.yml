@@ -8,14 +8,13 @@
 ## Copy telegraf internal & other config to /etc/telegraf/telegraf.d/
 - name: Copy telegraf config to /etc/telegraf/telegraf.conf
   copy:
-    src: telegraf.conf
+    src: config/telegraf.conf
     dest: /etc/telegraf/telegraf.conf
 - name: Copy telegraf internal to /etc/telegraf/telegraf.d/
   template: 
-    src: telegraf_internal.conf.j2
+    src: config/telegraf_internal.conf.j2
     dest: /etc/telegraf/telegraf.d/telegraf_internal.conf
 - name: Copy telegraf kafka & graphite config to /etc/telegraf/telegraf.d/
   template:
-    src: telegraf_kafka_graphite.conf.j2
+    src: config/telegraf_kafka_graphite.conf.j2
     dest: /etc/telegraf/telegraf.d/telegraf_kafka_graphite.conf
-

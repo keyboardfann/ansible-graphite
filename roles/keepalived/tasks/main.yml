@@ -28,24 +28,25 @@
 ## Copy Keepalived config
 - name: copy keepalived config to /etc/keepalived
   template: 
-    src: keepalived.conf.j2
+    src: config/keepalived.conf.j2
     dest: /etc/keepalived/keepalived.conf
 
+## sysctl.conf
+- name: copy sysctl config to /etc/
+  template:
+    src: config/sysctl.conf.j2
+    dest: /etc/sysctl.conf
+
+## keepalived check script
 - name: copy check udp script to /data01
   copy:
-    src: check_udp.sh
+    src: script/check_udp.sh
     dest: /data01/check_udp.sh
     mode: 0744
 
 - name: copy check tcp script to /data01
   copy:
-    src: check_port.pl
+    src: script/check_port.pl
     dest: /data01/check_port.pl
     mode: 0744
-
-##　sysctl.conf
-- name: copy sysctl config to /etc/
-  template:
-    src: sysctl.conf.j2
-    dest: /etc/sysctl.conf
 

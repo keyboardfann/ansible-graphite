@@ -64,20 +64,20 @@
 ## Graphite web config
 - name: copy graphite.wsgi to /opt/graphite/conf
   copy:
-    src: graphite.wsgi
+    src: web/graphite.wsgi
     dest: /opt/graphite/conf/graphite.wsgi
 
 - name: copy graphTemplates.conf to /opt/graphite/conf
   copy:
-    src: graphTemplates.conf
+    src: web/graphTemplates.conf
     dest: /opt/graphite/conf/graphTemplates.conf
 
 - name: copy graphite-web-vhost.conf to /etc/httpd/conf.d/
   template:
-    src: graphite-web-vhost.conf.j2
+    src: web/graphite-web-vhost.conf.j2
     dest: /etc/httpd/conf.d/graphite-web-vhost.conf
 
 - name: copy graphite web local_settings.py to /opt/graphite/webapp/graphite/local_settings.py
   template:
-    src: local_settings.py.j2
+    src: web/local_settings.py.j2
     dest: /opt/graphite/webapp/graphite/local_settings.py

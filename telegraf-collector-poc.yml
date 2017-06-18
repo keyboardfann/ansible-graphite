@@ -1,0 +1,6 @@
+---
+- name: deploy telegraf-collector on host
+  hosts: telegraf-collector-group
+  roles:
+    - role: telegraf-collector
+

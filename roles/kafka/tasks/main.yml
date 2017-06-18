@@ -2,7 +2,7 @@
 ## copy confluent repo
 - name: copy confluent repo to /etc/yum.repos.d/
   copy:
-    src: confluent.repo
+    src: repo/confluent.repo
     dest: /etc/yum.repos.d/confluent.repo
 
 ## Install kafka, zookeeper
@@ -11,67 +11,68 @@
   with_items:
     - confluent-platform-oss-2.11
 
-## Copy Zookeeper config
-- name: copy zookeeper config to /etc/kafka/
-  template: 
-    src: zookeeper.properties.j2
-    dest: /etc/kafka/zookeeper.properties
-
-## Ensure zookeeper data dir exist
+## Ensure zookeeper directory exist
 - name: Ensure zookeeper data dir exist
   file:
     path: "{{ zookeeper_data_dir }}"
     state: directory
 
-## Ensure zookeeper log dir exist
 - name: Ensure zookeeper log dir exist
   file:
     path: "{{ zookeeper_log_dir }}"
     state: directory
 
-## Ensure zookeeper log dir exist
 - name: Ensure zookeeper version-2 dir exist
   file:
     path: "{{ zookeeper_data_dir }}/version-2" 
     state: directory
 
-## Copy Zookeeper id file to zookeeper data folder
+## Zookeeper config
+- name: copy zookeeper config to /etc/kafka/
+  template:
+    src: zookeeper/zookeeper.properties.j2
+    dest: /etc/kafka/zookeeper.properties
+
 - name: copy zookeeper id file to zookeeper data folder
   template:
-   src: myid.j2
+   src: zookeeper/myid.j2
    dest: "{{ zookeeper_data_dir }}/myid"
 
-- name: copy zookeeper systemctl start/stop script to /etc/lib/systemd/system
+## Zookeeper systemctl script
+- name: copy zookeeper systemctl start/stop script to /usr/lib/systemd/system
   copy:
-    src: confluent-zookeeper.service
+    src: systemctl/confluent-zookeeper.service
     dest: /usr/lib/systemd/system/confluent-zookeeper.service
 
 - name: copy zookeeper start script to /usr/bin/
   template:
-    src: zookeeper-server-start.j2
+    src: systemctl/zookeeper-server-start.j2
     dest: /usr/bin/zookeeper-server-start
 
+## Kafka config
 - name: copy kafka config to /etc/kafka
   template:
-    src: server.properties.j2
+    src: kafka/server.properties.j2
     dest: /etc/kafka/server.properties
 
+## Kafka systemctl script
 - name: copy kafka systemctl start/stop script to /usr/lib/systemd/system
   copy:
-    src: confluent-kafka.service
+    src: systemctl/confluent-kafka.service
     dest: /usr/lib/systemd/system/confluent-kafka.service
 
 - name: copy kafka start script to /usr/bin/
   template:
-    src: kafka-server-start.j2
+    src: systemctl/kafka-server-start.j2
     dest: /usr/bin/kafka-server-start
 
+## Kafka internal metrics library
 - name: copy kafka export metrics to graphite library to /usr/share/java/kafka/
   copy:
-    src: kafka-graphite-1.0.4.jar
+    src: lib/kafka-graphite-1.0.4.jar
     dest: /usr/share/java/kafka/kafka-graphite-1.0.4.jar
 
 - name: copy kafka metrics collector library to /usr/share/java/kafka/
   copy:
-    src: metrics-graphite-2.2.0.jar
+    src: lib/metrics-graphite-2.2.0.jar
     dest: /usr/share/java/kafka/metrics-graphite-2.2.0.jar
