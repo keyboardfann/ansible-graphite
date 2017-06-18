@@ -43,6 +43,13 @@
     dest: /data01/check_port.pl
     mode: 0744
 
+##　sysctl.conf
+- name: copy sysctl config to /etc/
+  template:
+    src: sysctl.conf.j2
+    dest: /etc/sysctl.conf
+
+## Start keepalived
 - name: start keepalived
   service:
     name: keepalived
