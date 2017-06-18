@@ -131,6 +131,12 @@
   lineinfile: dest=/etc/rc.local line="iptables -t nat -A PREROUTING -p {{ portocol }} -d {{ vip }} -j REDIRECT --dport {{ vip_port }} --to-port {{ real_server_port }}"
   when: LB_result.stdout == "0"
 
+##　sysctl.conf
+- name: copy sysctl config to /etc/
+  template:
+    src: sysctl.conf.j2
+    dest: /etc/sysctl.conf
+
 
 ## Start/Stop service script
 - name: copy carbon-cache systemcd file to /usr/lib/systemd/system/

@@ -67,10 +67,8 @@
   lineinfile: dest=/etc/rc.local line="iptables -t nat -A PREROUTING -p {{ portocol }} -d {{ vip }} -j REDIRECT --dport {{ vip_port }} --to-port {{ real_server_port }}"
   when: LB_result.stdout == "0"
 
-
-## Start Riemann
-- name: start Riemann
-  service:
-    name: riemann
-    state: started
-    enabled: yes
+##　sysctl.conf
+- name: copy sysctl config to /etc/
+  template:
+    src: sysctl.conf.j2
+    dest: /etc/sysctl.conf
