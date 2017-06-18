@@ -18,5 +18,5 @@ riemann_port: 5555
 
 # input statsd
 statsd_ip: "{{ ansible_eno16780032.ipv4.address }}"
-statsd_port: 12004
+statsd_port: 12100
 statsd_allowed_pending_messages: 40000000
