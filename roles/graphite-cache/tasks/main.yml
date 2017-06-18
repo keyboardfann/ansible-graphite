@@ -112,6 +112,16 @@
   command: /bin/sh /var/tmp/init_graphite_db.sh
   when:  (first_install  == true) and (ansible_fqdn in graphite_bootstrap_server)
 
+## Setting iptables to porting L4 metrics to realserver port
+- iptables:
+    table: nat
+    destination: "{{ vip }}"
+    destination_port: "{{ vip_port }}"
+    chain: PREROUTING
+    protocol: "{{ portocol }}"
+    jump: REDIRECT
+    to_ports: "{{ real_server_port }}"
+
 ## Start/Stop service script
 - name: copy carbon-cache systemcd file to /usr/lib/systemd/system/
   template:

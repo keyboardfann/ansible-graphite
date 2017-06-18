@@ -1,4 +1,10 @@
 ---
+# VIP
+vip: 10.62.4.240
+vip_port: 12020
+portocol: tcp
+real_server_port: 2013
+
 # Carbon
 data_dir: "/data01/graphite/storage/whisper"
 log_dir: "/data01/graphite/storage/log"
