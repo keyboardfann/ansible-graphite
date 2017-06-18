@@ -1,0 +1,21 @@
+---
+## Copy binary to /usr/sbin
+- name: copy statsrelay binary to /usr/sbin/
+  copy:
+    src: binary/statsrelay
+    dest: /usr/sbin/statsrelay
+    mode: 0744
+
+
+## Copy statsrelay start/stop script
+- name: copy statsrelays start/stop script
+  template: 
+    src: systemctl/statsrelays.sh.j2
+    dest: /etc/init.d/statsrelays.sh
+    mode: 0744
+
+- name: copy statsrelay systemctl script
+  template:
+    src: systemctl/statsrelays.service.j2
+    dest: /usr/lib/systemd/system/statsrelays.service
+

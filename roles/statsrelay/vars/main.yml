@@ -1,0 +1,4 @@
+---
+# statsrelay
+statsrelay:
+  - {bindip: "10.62.4.158",bindport: "12001",prefix: "Operations.Monitor.{{ ansible_hostname }}.statsrelay5",backend: [ "10.62.4.159:12004:1", "10.62.4.159:12004:167" ]}

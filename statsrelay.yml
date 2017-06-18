@@ -1,0 +1,6 @@
+---
+- name: deploy statsrelay on host
+  hosts: all
+  roles:
+    - statsrelay
+

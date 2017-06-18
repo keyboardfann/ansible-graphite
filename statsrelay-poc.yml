@@ -1,0 +1,6 @@
+---
+- name: deploy statsrelay on host
+  hosts: statsrelay-group
+  roles:
+    - statsrelay
+

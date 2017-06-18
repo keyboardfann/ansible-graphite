@@ -1,0 +1,41 @@
+#!/bin/sh
+
+cmd=/usr/sbin/statsrelay
+
+start_services()
+{
+{% for item in statsrelay %}
+  $cmd -bind={{ item.bindip }} -port={{ item.bindport }} -prefix="{{ item.prefix }}"  
+{%- for item in item.backend -%}
+{{ " "+ item  }}
+{%- endfor %}
+ &
+{% endfor %}
+}
+
+stop_services()
+{
+  pkill -f statsrelay1
+  pkill -f statsrelay2
+  pkill -f statsrelay3
+  pkill -f statsrelay4
+  pkill -f statsrelay5
+}
+
+case "$1" in
+'start')
+  echo "Starting services"
+  start_services
+  ;;
+'stop')
+  echo "Stopping services"
+  stop_services
+  ;;
+'restart')
+  echo "Restarting services"
+  stop_services
+  sleep 2
+  start_services
+  ;;
+esac
+
