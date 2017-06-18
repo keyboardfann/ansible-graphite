@@ -1,6 +1,6 @@
 ---
 # statsrelay
-ipaddress: {{ ansible_eno16780032.ipv4.address }}
+ipaddress: "{{ ansible_eno16780032.ipv4.address }}"
 statsrelay:
   - {bindip: "{{ ipaddress }}",bindport: "12001",prefix: "Operations.Monitor.{{ ansible_hostname }}.statsrelay1",backend: [ "10.62.4.159:12004:1" ]}
   - {bindip: "{{ ipaddress }}",bindport: "12002",prefix: "Operations.Monitor.{{ ansible_hostname }}.statsrelay2",backend: [ "10.62.4.159:12004:1" ]}
