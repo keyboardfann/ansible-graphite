@@ -125,7 +125,7 @@
 ## Also write iptable rule to /etc/rc.local
 - name: Check LB setting in rc.local
   shell: cat /etc/rc.local |grep "{{ real_server_port }}" |wc -l
-    register: LB_result
+  register: LB_result
 
 - name: add LB setting to rc.local
   lineinfile: dest=/etc/rc.local line="iptables -t nat -A PREROUTING -p {{ portocol }} -d {{ vip }} -j REDIRECT --dport {{ vip_port }} --to-port {{ real_server_port }}"
