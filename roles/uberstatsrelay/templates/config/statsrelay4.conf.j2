@@ -1,0 +1,12 @@
+{% for item in statsrelay4 %}
+statsd:
+  bind: {{ item.bindip }}:{{ item.bindport }}
+  tcp_cork: false
+  validate: true
+  max-send-queue: 512MB
+  shard_map:
+  {% for backend in item.backend %}
+    {{ backend }}  
+  {% endfor%}
+    
+{% endfor%}

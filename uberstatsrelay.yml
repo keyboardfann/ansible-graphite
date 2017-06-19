@@ -1,0 +1,6 @@
+---
+- name: deploy uberstatsrelay on host
+  hosts: uberstatsrelay-group
+  roles:
+    - uberstatsrelay
+
