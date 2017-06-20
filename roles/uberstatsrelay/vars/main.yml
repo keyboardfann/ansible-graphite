@@ -3,16 +3,16 @@
 ipaddress: "{{ ansible_eno16780032.ipv4.address }}"
 
 statsrelay1:
-  - {bindip: "{{ ipaddress }}",bindport: "12001",backend: [ "10.62.4.159:12100:udp" ]}
+  - {bindip: "{{ ipaddress }}",bindport: "12001",backend: [ "0: 10.62.4.159:12100:udp" ]}
 
 statsrelay2:
-  - {bindip: "{{ ipaddress }}",bindport: "12002",backend: [ "10.62.4.159:12100:udp" ]}
+  - {bindip: "{{ ipaddress }}",bindport: "12002",backend: [ "0: 10.62.4.159:12100:udp" ]}
 
 statsrelay3:
-  - {bindip: "{{ ipaddress }}",bindport: "12003",backend: [ "10.62.4.159:12100:udp" ]}
+  - {bindip: "{{ ipaddress }}",bindport: "12003",backend: [ "0: 10.62.4.159:12100:udp" ]}
 
 statsrelay4:
-  - {bindip: "{{ ipaddress }}",bindport: "12004",backend: [ "10.62.4.159:12100:udp" ]}
+  - {bindip: "{{ ipaddress }}",bindport: "12004",backend: [ "0: 10.62.4.159:12100:udp" ]}
 
 statsrelay5:
-  - {bindip: "{{ ipaddress }}",bindport: "12005",backend: [ "10.62.4.159:12100:udp" ]}
+  - {bindip: "{{ ipaddress }}",bindport: "12005",backend: [ "0: 10.62.4.159:12100:udp" ]}
