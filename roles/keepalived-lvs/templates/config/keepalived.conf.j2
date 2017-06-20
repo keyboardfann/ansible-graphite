@@ -43,7 +43,7 @@ vrrp_instance VI_1 {
 virtual_server {{keepalived_vip}} {{item.VIP_Port}} {
     delay_loop 10
     lb_algo rr
-    lb_kind DR
+    lb_kind NAT
     protocol {{item.protocal}}
 
 {% for realserver in item.realserver %}

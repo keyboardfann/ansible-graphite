@@ -111,25 +111,6 @@
   command: /bin/sh /var/tmp/init_graphite_db.sh
   when:  (first_install  == true) and (ansible_fqdn in graphite_bootstrap_server)
 
-## Setting iptables to porting L4 metrics to realserver port
-- iptables:
-    table: nat
-    destination: "{{ vip }}"
-    destination_port: "{{ vip_port }}"
-    chain: PREROUTING
-    protocol: "{{ portocol }}"
-    jump: REDIRECT
-    to_ports: "{{ real_server_port }}"
-
-## Also write iptable rule to /etc/rc.local
-- name: Check LB setting in rc.local
-  shell: cat /etc/rc.local |grep "{{ real_server_port }}" |wc -l
-  register: LB_result
-
-- name: add LB setting to rc.local
-  lineinfile: dest=/etc/rc.local line="iptables -t nat -A PREROUTING -p {{ portocol }} -d {{ vip }} -j REDIRECT --dport {{ vip_port }} --to-port {{ real_server_port }}"
-  when: LB_result.stdout == "0"
-
 ##　sysctl.conf
 - name: copy sysctl config to /etc/
   template:

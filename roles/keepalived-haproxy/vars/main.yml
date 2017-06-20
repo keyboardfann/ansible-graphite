@@ -25,5 +25,6 @@ log_dir: /var/log/haproxy
 #  - {listen_name: "name", protocol: "TCP/HTTP", bind_ip: "0.0.0.0", bind_port: "12020", maxconnection: "3000", realserver: [ "servername1 ip:port","servername2 ip:port", "servername3 ip:port"  ] }
 
 LB:
- - {listen_name: "riemann", protocol: "TCP", bind_ip: "0.0.0.0", bind_port: "12020", maxconnection: "3000", realserver: [ "riemann1 10.62.4.159:5555" ] }
- - {listen_name: "graphiteweb", protocol: "HTTP", bind_ip: "0.0.0.0", bind_port: "12030", maxconnection: "50", realserver: [ "graphite1 10.62.4.158:80", "graphite2 10.62.4.159:80" ] }
+ - {listen_name: "riemann", protocol: "TCP", bind_ip: "0.0.0.0", bind_port: "12010", maxconnection: "10000", realserver: [ "riemann1 10.62.4.159:5555" ] }
+ - {listen_name: "graphiteserver", protocol: "TCP", bind_ip: "0.0.0.0", bind_port: "12020", maxconnection: "10000", realserver: [ "graphite1 10.62.4.158:2013", "graphite1 10.62.4.159:2013" ] }
+ - {listen_name: "graphiteweb", protocol: "HTTP", bind_ip: "0.0.0.0", bind_port: "12030", maxconnection: "50", realserver: [ "graphiteweb1 10.62.4.158:80", "graphiteweb2 10.62.4.159:80" ] }

@@ -1,9 +1,5 @@
 ---
-# VIP
-vip: 10.62.4.240
-vip_port: 12020
-portocol: tcp
-real_server_port: 2013
+# base setting
 NIC_name: eno16780032
 
 # Carbon

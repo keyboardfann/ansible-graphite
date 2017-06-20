@@ -1,11 +1,5 @@
 ---
 
-# VIP
-vip: 10.62.4.240
-vip_port: 12000
-portocol: udp
-real_server_port: 12004
-
 # telegraf gerneral config
 metric_batch_size: 200
 metric_buffer_limit: 1000000
@@ -13,8 +7,8 @@ debug: false
 logfile: "/var/log/telegraf/telegraf.log"
 
 # output riemann
-riemann_ip: 10.62.4.159
-riemann_port: 5555
+riemann_ip: 10.62.4.241
+riemann_port: 12010
 
 # input statsd
 statsd_ip: "{{ ansible_eno16780032.ipv4.address }}"
