@@ -2,11 +2,11 @@
 
 start_services()
 {
-  /usr/local/sbin/statsrelay -c statsrelay1.conf &
-  /usr/local/sbin/statsrelay -c statsrelay2.conf &
-  /usr/local/sbin/statsrelay -c statsrelay3.conf &
-  /usr/local/sbin/statsrelay -c statsrelay4.conf &
-  /usr/local/sbin/statsrelay -c statsrelay5.conf &
+  /usr/local/sbin/statsrelay -c /etc/statsrelay/statsrelay1.conf &
+  /usr/local/sbin/statsrelay -c /etc/statsrelay/statsrelay2.conf &
+  /usr/local/sbin/statsrelay -c /etc/statsrelay/statsrelay3.conf &
+  /usr/local/sbin/statsrelay -c /etc/statsrelay/statsrelay4.conf &
+  /usr/local/sbin/statsrelay -c /etc/statsrelay/statsrelay5.conf &
 }
 
 stop_services()
