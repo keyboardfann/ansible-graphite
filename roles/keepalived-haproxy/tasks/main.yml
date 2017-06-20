@@ -1,0 +1,40 @@
+---
+## Install Keepalived + haproxy
+- name: install keepalived packages
+  yum: pkg={{ item }} update_cache=yes
+  with_items:
+    - keepalived
+    - haproxy
+    - rsyslog
+    - psmisc
+
+# Ensure log dir exist
+- name: Ensure haproxy log dir exist
+  file:
+    path: "{{ log_dir }}"
+    state: directory
+
+## Haproxy config
+- name: copy haproxy config to /etc/haproxy
+  template:
+    src: config/haproxy.cfg.j2
+    dest: /etc/haproxy/haproxy.cfg
+
+- name: copy haproxy log setting to /etc/rsyslog.d/
+  template:
+    src: log/haproxy_rsyslog.conf.j2
+    dest: /etc/rsyslog.d/haproxy.conf
+
+## Copy Keepalived config
+- name: copy keepalived config to /etc/keepalived
+  template: 
+    src: config/keepalived.conf.j2
+    dest: /etc/keepalived/keepalived.conf
+
+### sysctl.conf
+#- name: copy sysctl config to /etc/
+#  template:
+#    src: config/sysctl.conf.j2
+#    dest: /etc/sysctl.conf
+#
+

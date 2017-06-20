@@ -1,0 +1,6 @@
+$ModLoad imudp
+$UDPServerRun 514 
+$UDPServerAddress 127.0.0.1 
+### keep logs in localhost ##
+local2.* {{ log_dir }}/haproxy.log
+& ~
