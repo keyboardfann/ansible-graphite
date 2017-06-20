@@ -70,7 +70,7 @@ defaults
 
 listen  stats
     mode http
-    bind 0.0.0.0:8090           
+    bind 0.0.0.0:{{ stats_port }}
     stats enable                
     stats refresh 3s            
     stats hide-version          

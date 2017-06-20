@@ -7,16 +7,21 @@ notification_email:
   - fann.wu@redcypress.com.tw
 notification_email_from: test@redcypress.com.tw
 
-keepalived_bind_interface: eth1
-auth_pass: graphite
+keepalived_bind_interface: eno16780032
+auth_pass: itsahaproxy
 keepalived_vip: 192.168.100.99
 
 
 # haproxy config
 maxconn: 4000
+stats_port: 8090
 stats_account: admin
 stats_password: itsaadmin
 log_dir: /var/log/haproxy
+
+
+## Format: 
+#  - {listen_name: "name", protocol: "TCP/HTTP", bind_ip: "0.0.0.0", bind_port: "12020", maxconnection: "3000", realserver: [ "servername1 ip:port","servername2 ip:port", "servername3 ip:port"  ] }
 
 LB:
  - {listen_name: "riemann", protocol: "TCP", bind_ip: "0.0.0.0", bind_port: "12020", maxconnection: "3000", realserver: [ "riemann1 10.62.4.158:5555" ] }
