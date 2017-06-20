@@ -1,0 +1,6 @@
+---
+- name: deploy Keepalived+HAproxy on host
+  hosts: all
+  roles:
+    - role: keepalived-haproxy
+
