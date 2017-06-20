@@ -1,7 +1,6 @@
 ---
 # statsrelay
-#ipaddress: "{{ ansible_eno16780032.ipv4.address }}"
-ipaddress: "{{ ansible_eth1.ipv4.address }}"
+ipaddress: "{{ ansible_eno16780032.ipv4.address }}"
 
 statsrelay1:
   - {bindip: "{{ ipaddress }}",bindport: "12001",backend: [ "10.62.4.159:12100:udp" ]}
