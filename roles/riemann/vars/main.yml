@@ -1,6 +1,6 @@
 ---
 # VIP
-vip: 10.62.4.240
+vip: 10.62.4.241
 vip_port: 12010
 portocol: tcp
 real_server_port: 5555
