@@ -1,11 +1,4 @@
 ---
-# VIP
-vip: 10.62.4.241
-vip_port: 12010
-portocol: tcp
-real_server_port: 5555
-NIC_name: eno16780032
-
 # Riemann config
 log_path: "/data01/riemann/riemann.log"
 internal_metrics_interval: 60
@@ -18,5 +11,5 @@ kafka_brokers:
   - tng1400:9092
 
 # output to graphite config
-graphite_server_ip: 10.62.4.240
+graphite_server_ip: 10.62.4.241
 graphite_server_port: 12020
