@@ -24,12 +24,6 @@
     src: config/riemann-sysconfig.j2
     dest: /etc/sysconfig/riemann
 
-##　sysctl.conf
-- name: copy sysctl config to /etc/
-  template:
-    src: config/sysctl.conf.j2
-    dest: /etc/sysctl.conf
-
 ## Check /tmp/riemann.service exists
 - name: check /tmp/riemann.service exists
   stat:
