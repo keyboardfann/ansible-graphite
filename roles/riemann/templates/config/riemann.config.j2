@@ -72,6 +72,7 @@
 
 
 ; service (not riemann or not telegraf-health), output to kafka. service is riemann( riemann health metrics ) or telegraf-health( telegraf metrics ), output to graphite directly
+(let [downstream (batch 100 1/10  (async-queue! :agg {:queue-size 1e3 :core-pool-size 4 :max-pool-size 32}  ))]
 (streams
   #(info %)
 (where (not (or (service #"^riemann ")(service #"^telegraf-health*")))
@@ -82,5 +83,5 @@
 (where  (service #"^telegraf-health*")
   (graphite {:host "{{ graphite_server_ip }}"
              :port {{ graphite_server_port }} } ))
-)
+))
 
