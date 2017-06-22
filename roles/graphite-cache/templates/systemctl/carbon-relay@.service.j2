@@ -3,7 +3,7 @@ Description=carbon-relay instance %i (graphite)
 
 [Service]
 ExecStartPre=/bin/rm -f /var/run/carbon-relay-%i.pid
-ExecStart=/opt/graphite/bin/carbon-relay.py --config=/opt/graphite/conf/carbon.conf --pidfile=/var/run/carbon-relay-%i.pid --logdir={{ log_dir }} --instance=%i start
+ExecStart=/opt/graphite/bin/carbon-relay.py --config=/opt/graphite/conf/carbon.conf --pidfile=/var/run/carbon-relay-%i.pid  --instance=%i start
 Type=forking
 PIDFile=/var/run/carbon-relay-%i.pid
 
