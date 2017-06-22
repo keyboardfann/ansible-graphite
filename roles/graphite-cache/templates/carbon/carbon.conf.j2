@@ -99,18 +99,6 @@ UDP_RECEIVER_PORT = 2003
 # shouldn't change this unless you know what you're doing.
 # PICKLE_RECEIVER_BACKLOG = 1024
 
-LINE_RECEIVER_INTERFACE = 0.0.0.0
-PICKLE_RECEIVER_INTERFACE = 0.0.0.0
-CACHE_QUERY_INTERFACE = 0.0.0.0
-
-## cache instance
-{% for item in cache_instance %}
-[cache:{{ item.instance }}]
-LINE_RECEIVER_PORT = {{ item.line_port }}
-PICKLE_RECEIVER_PORT = {{ item.pinckle_port }}
-CACHE_QUERY_PORT = {{ item.cache_query_port }}
-
-{% endfor %}
 
 # Set to false to disable logging of successful connections
 LOG_LISTENER_CONNECTIONS = {{ log_listener_connections }}
@@ -247,22 +235,22 @@ CARBON_METRIC_INTERVAL = {{ carbon_metric_interval }}
 # from [carbon] section.
 # You can then specify the --instance=b option to manage this instance
 
-
-
-[relay]
 LINE_RECEIVER_INTERFACE = 0.0.0.0
-#LINE_RECEIVER_PORT = 2013
 PICKLE_RECEIVER_INTERFACE = 0.0.0.0
-#PICKLE_RECEIVER_PORT = 2014
+CACHE_QUERY_INTERFACE = 0.0.0.0
 
-## Relay instance
-{% for item in relay_instance %}
-[relay:{{ item.instance }}]
+## cache instance
+{% for item in cache_instance %}
+[cache:{{ item.instance }}]
 LINE_RECEIVER_PORT = {{ item.line_port }}
 PICKLE_RECEIVER_PORT = {{ item.pinckle_port }}
+CACHE_QUERY_PORT = {{ item.cache_query_port }}
 
 {% endfor %}
 
+
+
+[relay]
 
 
 # Set to false to disable logging of successful connections
@@ -344,6 +332,20 @@ USE_FLOW_CONTROL = True
 # seconds. Set CARBON_METRIC_INTERVAL to 0 to disable instrumentation
 CARBON_METRIC_PREFIX = {{ carbon_metrics_prefix }}
 CARBON_METRIC_INTERVAL = {{ carbon_metric_interval }}
+
+
+LINE_RECEIVER_INTERFACE = 0.0.0.0
+#LINE_RECEIVER_PORT = 2013
+PICKLE_RECEIVER_INTERFACE = 0.0.0.0
+#PICKLE_RECEIVER_PORT = 2014
+
+## Relay instance
+{% for item in relay_instance %}
+[relay:{{ item.instance }}]
+LINE_RECEIVER_PORT = {{ item.line_port }}
+PICKLE_RECEIVER_PORT = {{ item.pinckle_port }}
+
+{% endfor %}
 
 
 [aggregator]
