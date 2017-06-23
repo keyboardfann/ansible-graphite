@@ -13,7 +13,7 @@ keepalived_vip: 10.62.4.241
 
 
 # haproxy config
-maxconn: 4000
+maxconn: 16384
 stats_port: 8090
 stats_account: admin
 stats_password: itsaadmin

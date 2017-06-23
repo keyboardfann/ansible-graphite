@@ -39,33 +39,35 @@ global
 # common defaults that all the 'listen' and 'backend' sections will
 # use if not designated in their block
 #---------------------------------------------------------------------
-defaults
+defaults HTTP
     mode                    http
     log                     global
     option                  httplog
     option                  dontlognull
-    option http-server-close
-    option forwardfor       except 127.0.0.0/8
+    # option                http-ignore-probes
+    # option                dontlog-normal
+    # option http-server-close
+    # option forwardfor     except 127.0.0.0/8
     option                  redispatch
     retries                 3
     timeout http-request    10s
     timeout queue           1m
     timeout connect         10s
+    # timeout connect       5m
     timeout client          1m
+    # timeout client        30m
     timeout server          1m
+    # timeout server        30m
     timeout http-keep-alive 10s
     timeout check           10s
     maxconn                 3000
 
 
-#frontend allen                    
-#    bind *:80
-#    mode http
-#    default_backend webservers    
-#	
-#backend webservers                
-#    balance roundrobin            
-#    server web1 192.168.100.104:80 check rise 2 fall 1 weight 2
+defaults TCP
+    log                     global
+    # option                dontlog-normal
+    mode                    tcp
+    option                  tcplog
 
 
 listen  stats
@@ -83,14 +85,12 @@ listen  stats
 listen {{ item.listen_name }}
 {% if item.protocol=="TCP" %}
     mode tcp
-    bind {{ item.bind_ip }}:{{ item.bind_port }}
-    maxconn {{ item.maxconnection }}
+    mode tcp
+    option tcpka
     option tcplog
-    option dontlognull
-    option redispatch
-    retries 3
-    option log-health-checks
+    maxconn {{ item.maxconnection }}
     balance roundrobin
+    bind {{ item.bind_ip }}:{{ item.bind_port }}
 {% for realserver in item.realserver %}
     server {{ realserver }} check
 {% endfor %}
