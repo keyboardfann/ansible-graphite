@@ -85,7 +85,6 @@ listen  stats
 listen {{ item.listen_name }}
 {% if item.protocol=="TCP" %}
     mode tcp
-    mode tcp
     option tcpka
     option tcplog
     maxconn {{ item.maxconnection }}
