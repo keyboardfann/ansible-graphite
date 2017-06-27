@@ -41,25 +41,6 @@
     group: apache
     recurse: true
 
-- name: Ensure data dir exist
-  file:
-    path: "{{ data_dir }}"
-    state: directory
-    owner: apache
-    group: apache
-    recurse: true
-
-- name: Ensure log dir exist
-  file:
-    path: "{{ log_dir }}"
-    state: directory
-
-- name: Ensure web log dir exist
-  file:
-    path: "{{ log_dir }}/webapp"
-    state: directory
-    owner: apache
-    group: apache
 
 ## Graphite config
 - name: copy carbon config to /opt/graphite/conf/
