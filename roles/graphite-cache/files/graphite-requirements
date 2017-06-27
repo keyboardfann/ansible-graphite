@@ -8,3 +8,5 @@ whisper==0.9.16
 graphite-web==0.9.16
 carbon==0.9.16
 python-memcached
+service_identity
+cryptography

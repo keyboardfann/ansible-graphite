@@ -22,6 +22,7 @@
     - MySQL-python 
     - libffi-devel
     - python-cairocffi
+    - openssl-devel
 
 ## Install graphite
 - name: copy graphite-requirements file
