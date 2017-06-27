@@ -4,6 +4,11 @@
 pattern = {{ item.pattern }}
 destinations = {{ item.destinations }}
 continue = {{ item.continue }}
+{% endfor %}
 
+{% for item in relay_default_rule %}
+[{{ item.metric_name }}]
+default = true
+destinations = {{ item.destinations }}
 {% endfor %}
 {% endif%}
