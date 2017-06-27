@@ -1,15 +1,15 @@
 ---
 # Riemann config
-log_path: "/data01/riemann/riemann.log"
+log_path: "/lv_data01/riemann/riemann.log"
 internal_metrics_interval: 60
 riemann_jvm_heap: 4096m
 
 # output to Kafka config
 kafka_brokers:
-  - tng1398:9092
-  - tng1399:9092
-  - tng1400:9092
+  - tng1512:9092
+  - tng1513:9092
+  - tng1514:9092
 
 # output to graphite config
-graphite_server_ip: 10.62.4.241
-graphite_server_port: 12020
+graphite_server_ip: tng1520
+graphite_server_port: 2103
