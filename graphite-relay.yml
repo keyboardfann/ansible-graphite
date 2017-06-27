@@ -1,0 +1,6 @@
+---
+- name: deploy graphite-cache on host
+  hosts: all
+  roles:
+    - graphite-relay
+
