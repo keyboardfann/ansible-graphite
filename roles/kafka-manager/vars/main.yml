@@ -1,13 +1,13 @@
 ---
 # Zookeeper config
 zookeeper_servers:
-  - tng1398
-  - tng1399
-  - tng1400
+  - tng1512
+  - tng1513
+  - tng1514
 zookeeper_port: 2181
 
 # Web UI auth
 basicAuthentication_enabled: true
 basicAuthentication_username: admin
-basicAuthentication_password: itsaadmin
+basicAuthentication_password: itsaeastadmin
 web_port: 9000
