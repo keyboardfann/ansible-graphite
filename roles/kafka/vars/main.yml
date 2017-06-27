@@ -15,7 +15,7 @@ kafka_brokers:
   - tng1513
   - tng1514
 
-kafka_log_dir: /data01/kafka/
+kafka_log_dir: /lv_data01/kafka/
 num_partitions: 12
 log_retention_hours: 168
 kafka_heapsize: 6g
