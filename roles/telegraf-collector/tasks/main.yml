@@ -5,6 +5,15 @@
     name: https://dl.influxdata.com/telegraf/releases/telegraf-1.3.1-1.x86_64.rpm
     state: present
 
+# Ensure log folder exist
+- name: Ensure log dir exist
+  file:
+    path: "{{ logfolder }}"
+    state: directory
+    owner: telegraf
+    group: telegraf
+    recurse: true
+
 ## Copy telegraf internal & other config to /etc/telegraf/telegraf.d/
 - name: Copy telegraf config to /etc/telegraf/telegraf.conf
   copy:

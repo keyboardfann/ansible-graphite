@@ -4,13 +4,13 @@
 metric_batch_size: 200
 metric_buffer_limit: 1000000
 debug: false
-logfile: "/var/log/telegraf/telegraf.log"
+logfolder: "/lv_data01/telegraf/"
 
 # output riemann
-riemann_ip: 10.62.4.241
-riemann_port: 12010
+riemann_ip: tng1512
+riemann_port: 5555
 
 # input statsd
 statsd_ip: "{{ ansible_eno16780032.ipv4.address }}"
-statsd_port: 12100
-statsd_allowed_pending_messages: 40000000
+statsd_port: 12000
+statsd_allowed_pending_messages: 10000000
