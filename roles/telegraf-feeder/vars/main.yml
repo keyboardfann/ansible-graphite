@@ -3,18 +3,28 @@
 metric_batch_size: 2000
 metric_buffer_limit: 20000
 debug: false
-logfile: "/var/log/telegraf/telegraf.log"
+logfile: "/lv_data01/telegraf/telegraf.log"
 
 # output graphite
 graphite_servers:
-  - tng1398:2013
-  - tng1399:2013
+  - tng1518:2013
+  - tng1518:2023
+  - tng1518:2033
+  - tng1518:2043
+  - tng1518:2053
+  - tng1518:2063
+  - tng1519:2013
+  - tng1519:2023
+  - tng1519:2033
+  - tng1519:2043
+  - tng1519:2053
+  - tng1519:2063
 
 # input kafka
-topic: telegraf
+topic: tng
 zookeeper_servers:
-  - tng1398:2181
-  - tng1399:2181
-  - tng1400:2181
+  - tng1512:2181
+  - tng1513:2181
+  - tng1514:2181
 
 consumer_group: telegraf_metrics_consumers
