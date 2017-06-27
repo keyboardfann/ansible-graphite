@@ -1,10 +1,10 @@
 ---
 
 # percona servers
-mysql_bootstrap_server: tng1398.tng.mgsops.com
+mysql_bootstrap_server: tng1520.tng.mgsops.com
 mysql_servers:
-  - tng1399.tng.mgsops.com
-  - tng1400.tng.mgsops.com
+  - tng1521.tng.mgsops.com
+  - tng1524.tng.mgsops.com
 
 
 ## It's important to set true only in the first time
@@ -13,7 +13,7 @@ first_install: true
 # Mysql setting
 cluster_name: monitor_cluster
 ip: "{{ ansible_eno16780032.ipv4.address }}"
-mysql_data_dir: /data01/mysql
+mysql_data_dir: /lv_data01/mysql
 
-mysql_root_password: dMIBVKLaiaIwyC7
-mysql_grphite_password: graphitePW02Vxzsigavms
+mysql_root_password: QXJDTyAKawJcX4kE
+mysql_grphite_password: graphiteV9qnyCuhmYhqVD6N
