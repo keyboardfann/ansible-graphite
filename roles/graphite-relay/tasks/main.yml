@@ -1,0 +1,100 @@
+---
+
+## Prepare epel repo
+- name: install epel repo
+  yum: 
+    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+    state: present
+
+## Install depencency
+- name: install depencency packages
+  yum: pkg={{ item }} update_cache=yes
+  with_items:
+    - python-pip
+    - httpd
+    - net-snmp
+    - perl
+    - mod_wsgi
+    - python-devel
+    - gcc
+    - gcc-c++
+    - pytz
+    - MySQL-python 
+    - libffi-devel
+    - python-cairocffi
+    - openssl-devel
+
+## Install graphite
+- name: copy graphite-requirements file
+  copy: src=graphite-requirements dest=/var/tmp/graphite-requirements
+
+- name: install graphite packages
+  pip: 
+    requirements: /var/tmp/graphite-requirements
+
+# Ensure directory exist
+- name: Ensure /opt/graphite permission
+  file:
+    path: /opt/graphite
+    state: directory
+    owner: apache
+    group: apache
+    recurse: true
+
+- name: Ensure data dir exist
+  file:
+    path: "{{ data_dir }}"
+    state: directory
+    owner: apache
+    group: apache
+    recurse: true
+
+- name: Ensure log dir exist
+  file:
+    path: "{{ log_dir }}"
+    state: directory
+
+- name: Ensure web log dir exist
+  file:
+    path: "{{ log_dir }}/webapp"
+    state: directory
+    owner: apache
+    group: apache
+
+## Graphite config
+- name: copy carbon config to /opt/graphite/conf/
+  template:
+    src: carbon/carbon.conf.j2
+    dest: /opt/graphite/conf/carbon.conf
+
+## relay-rule config, will check relay_method, if relay_method!=rules, config blank
+- name: copy relay-rule.conf to /opt/graphite/conf 
+  template:
+    src: carbon/relay-rules.conf.j2
+    dest: /opt/graphite/conf/relay-rules.conf
+
+## whisper config
+- name: copy storage-schema.conf to /opt/graphite/conf 
+  template:
+    src: carbon/storage-schemas.conf.j2
+    dest: /opt/graphite/conf/storage-schemas.conf
+
+
+##　sysctl.conf
+- name: copy sysctl config to /etc/
+  template:
+    src: sysctl.conf.j2
+    dest: /etc/sysctl.conf
+
+
+## Start/Stop service script
+- name: copy carbon-cache systemcd file to /usr/lib/systemd/system/
+  template:
+    src: systemctl/carbon-cache@.service.j2
+    dest: /usr/lib/systemd/system/carbon-cache@.service
+
+- name: copy carbon-relay systemcd file to /usr/lib/systemd/system/
+  template:
+    src: systemctl/carbon-relay@.service.j2
+    dest: /usr/lib/systemd/system/carbon-relay@.service
+

@@ -1,0 +1,12 @@
+cffi
+cairocffi
+constants
+Django==1.6.11
+Twisted==16.5
+django-tagging<0.4
+whisper==0.9.16
+graphite-web==0.9.16
+carbon==0.9.16
+python-memcached
+service_identity
+cryptography
