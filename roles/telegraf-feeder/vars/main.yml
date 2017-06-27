@@ -3,7 +3,7 @@
 metric_batch_size: 2000
 metric_buffer_limit: 20000
 debug: false
-logfolder: "/lv_data01/telegraf/telegraf.log"
+logfolder: "/lv_data01/telegraf/"
 
 # output graphite
 graphite_servers:
