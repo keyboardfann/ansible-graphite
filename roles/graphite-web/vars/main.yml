@@ -1,16 +1,16 @@
 ---
 # Carbon
-data_dir: "/data01/graphite/storage/whisper"
-log_dir: "/data01/graphite/storage/log"
+data_dir: "/lv_data01/graphite/storage/whisper"
+log_dir: "/lv_data01/graphite/storage/log"
 
 # Graphite web
-secret_key: du2pJJgPoknwbxe
+secret_key: nTbtgMFfWALx4Vj3
 memcached_host: 127.0.0.1
 memcached_port: 11211
 
-mysql_grphite_password: graphitePW02Vxzsigavms
+mysql_grphite_password: graphiteV9qnyCuhmYhqVD6N
 
 cluster_servers:
-  - tng1398:80
-  - tng1399:80
+  - tng1520:80
+  - tng1521:80
  
