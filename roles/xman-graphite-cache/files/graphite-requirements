@@ -1,4 +1,4 @@
-cffi
+cffi>=1.7
 cairocffi
 constants
 Django==1.6.11
