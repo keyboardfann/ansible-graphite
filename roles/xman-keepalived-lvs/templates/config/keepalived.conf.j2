@@ -1,0 +1,66 @@
+! Configuration File for keepalived
+
+global_defs {
+   notification_email {
+    {% for item in notification_email %}
+      {{item}}
+    {% endfor %}
+   }
+   notification_email_from {{notification_email_from}}
+   smtp_server {{smtp_server}}
+   smtp_connect_timeout 30
+   router_id LB{{ play_hosts.index(inventory_hostname) }}
+}
+
+
+vrrp_instance VI_1 {
+    state {% if play_hosts.index(inventory_hostname)==0 -%}
+          Master 
+          {% elif play_hosts.index(inventory_hostname)==1 -%} 
+          Backup 
+          {%- endif %}
+
+    interface {{keepalived_bind_interface}}
+    virtual_router_id 100
+    priority {% if play_hosts.index(inventory_hostname)==0 -%}
+             100
+             {% elif play_hosts.index(inventory_hostname)==1 -%}
+             50
+             {%- endif %}
+
+    advert_int 1
+    authentication {
+        auth_type PASS
+        auth_pass {{auth_pass}}
+    }
+    virtual_ipaddress {
+       {{keepalived_vip}}
+    }
+}
+
+
+{% for item in LB %}
+virtual_server {{keepalived_vip}} {{item.VIP_Port}} {
+    delay_loop 10
+    lb_algo rr
+    lb_kind NAT
+    protocol {{item.protocal}}
+
+{% for realserver in item.realserver %}
+    real_server {{ realserver }} {
+        weight 10
+        {% if item.protocal=="TCP" -%}
+        TCP_CHECK {
+          connect_timeout 10
+        }
+        {% elif item.protocal=="UDP" -%}      
+        MISC_CHECK {
+            misc_path "/data01/check_udp.sh {{ realserver }}"
+            misc_timeout 10
+        }
+        {% endif %}
+}
+
+{% endfor %}
+}
+{% endfor %}

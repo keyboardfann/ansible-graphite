@@ -1,0 +1,52 @@
+---
+## Install Keepalived + LVS
+- name: install keepalived packages
+  yum: pkg={{ item }} update_cache=yes
+  with_items:
+    - ipvsadm
+    - keepalived
+    - nmap
+
+## Check /etc/sysconfig/ipvsadm exists
+- name: check /etc/sysconfig/ipvsadm exists
+  stat:
+    path: /etc/sysconfig/ipvsadm
+  register: ipvsadm_file
+
+## If /etc/sysconfig/ipvsadm not exist , create it
+- name: create ipvsadmin service script
+  file: path=/etc/sysconfig/ipvsadm state=touch
+  when: ipvsadm_file.stat.exists == false
+
+## Start LVS 
+- name: start LVS
+  service:
+    name: ipvsadm
+    state: started
+    enabled: yes
+
+## Copy Keepalived config
+- name: copy keepalived config to /etc/keepalived
+  template: 
+    src: config/keepalived.conf.j2
+    dest: /etc/keepalived/keepalived.conf
+
+## sysctl.conf
+- name: copy sysctl config to /etc/
+  template:
+    src: config/sysctl.conf.j2
+    dest: /etc/sysctl.conf
+
+## keepalived check script
+- name: copy check udp script to /data01
+  copy:
+    src: script/check_udp.sh
+    dest: /data01/check_udp.sh
+    mode: 0744
+
+- name: copy check tcp script to /data01
+  copy:
+    src: script/check_port.pl
+    dest: /data01/check_port.pl
+    mode: 0744
+
