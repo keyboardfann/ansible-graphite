@@ -1,0 +1,6 @@
+---
+- name: deploy xman uberstatsrelay on host
+  hosts: all
+  roles:
+    - xman-uberstatsrelay
+

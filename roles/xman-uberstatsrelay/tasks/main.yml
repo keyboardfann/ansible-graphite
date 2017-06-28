@@ -1,0 +1,53 @@
+---
+## Copy binary to /usr/sbin
+- name: copy statsrelay binary to /usr/local/sbin/
+  copy:
+    src: binary/statsrelay
+    dest: /usr/local/sbin/statsrelay
+    mode: 0744
+
+# Ensure statsrelay config dir exist
+- name: Ensure statsrelay config dir exist
+  file:
+    path: /etc/statsrelay
+    state: directory
+
+## Copy statsrelay1~5 config to /etc/statsrelay
+- name: copy statsrelay1 config to /etc/statsrelay 
+  template:
+    src: config/statsrelay1.conf.j2
+    dest: /etc/statsrelay/statsrelay1.conf
+
+- name: copy statsrelay2 config to /etc/statsrelay
+  template:
+    src: config/statsrelay2.conf.j2
+    dest: /etc/statsrelay/statsrelay2.conf
+
+- name: copy statsrelay3 config to /etc/statsrelay
+  template:
+    src: config/statsrelay3.conf.j2
+    dest: /etc/statsrelay/statsrelay3.conf
+
+- name: copy statsrelay4 config to /etc/statsrelay
+  template:
+    src: config/statsrelay4.conf.j2
+    dest: /etc/statsrelay/statsrelay4.conf
+
+- name: copy statsrelay5 config to /etc/statsrelay
+  template:
+    src: config/statsrelay5.conf.j2
+    dest: /etc/statsrelay/statsrelay5.conf
+
+
+## Copy statsrelay start/stop script
+- name: copy statsrelays start/stop script to /etc/init.d/
+  template: 
+    src: systemctl/statsrelays.sh.j2
+    dest: /etc/init.d/statsrelays.sh
+    mode: 0744
+
+- name: copy statsrelay systemctl script
+  template:
+    src: systemctl/statsrelays.service.j2
+    dest: /usr/lib/systemd/system/statsrelays.service
+

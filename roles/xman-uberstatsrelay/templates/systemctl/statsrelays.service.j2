@@ -1,0 +1,12 @@
+[Unit]
+Description=Statsrelay services
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh /etc/init.d/statsrelays.sh start
+ExecStop=/bin/sh /etc/init.d/statsrelays.sh stop
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
