@@ -1,0 +1,6 @@
+---
+- name: deploy XMAN LVS+Keepalived on host
+  hosts: all
+  roles:
+    - role: xman-keepalived-lvs
+
