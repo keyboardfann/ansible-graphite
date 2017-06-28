@@ -50,14 +50,14 @@ virtual_server {{keepalived_vip}} {{item.VIP_Port}} {
     real_server {{ realserver }} {
         weight 10
         {% if item.protocal=="TCP" -%}
-        TCP_CHECK {
-          connect_timeout 10
-        }
+#        TCP_CHECK {
+#          connect_timeout 10
+#        }
         {% elif item.protocal=="UDP" -%}      
-        MISC_CHECK {
-            misc_path "/data01/check_udp.sh {{ realserver }}"
-            misc_timeout 10
-        }
+#        MISC_CHECK {
+#            misc_path "/data01/check_udp.sh {{ realserver }}"
+#            misc_timeout 10
+#        }
         {% endif %}
 }
 
