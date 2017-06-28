@@ -3,8 +3,8 @@
 #
 #
 haproxy_socket_dir: /var/lib/haproxy
-graphite_server: tng1398
-graphite_port: 2003
+graphite_server: tng1522
+graphite_port: 2013
 pull_workers: 4
 process_workers: 2
 
