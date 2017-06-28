@@ -38,15 +38,15 @@
     dest: /etc/sysctl.conf
 
 ## keepalived check script
-- name: copy check udp script to {{ check_script_folder }}
+- name: copy check udp script to "{{ check_script_folder }}"
   copy:
     src: script/check_udp.sh
-    dest: {{ check_script_folder }}/check_udp.sh
+    dest: "{{ check_script_folder }}"/check_udp.sh
     mode: 0744
 
-- name: copy check tcp script to {{ check_script_folder }}
+- name: copy check tcp script to "{{ check_script_folder }}"
   copy:
     src: script/check_port.pl
-    dest: {{ check_script_folder }}/check_port.pl
+    dest: "{{ check_script_folder }}"/check_port.pl
     mode: 0744
 
