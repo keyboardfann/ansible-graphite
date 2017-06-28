@@ -10,6 +10,7 @@ notification_email_from: test@redcypress.com.tw
 keepalived_bind_interface: eno16780032
 auth_pass: graphite
 keepalived_vip: 0.0.0.0
+check_script_folder: /lv_data01
 
 LB: 
   - {protocal: "UDP", VIP_Port: "12000", realserver: ["{{ ansible_eno16780032.ipv4.address }} 12001", "{{ ansible_eno16780032.ipv4.address }} 12002","{{ ansible_eno16780032.ipv4.address }} 12003","{{ ansible_eno16780032.ipv4.address }} 12004","{{ ansible_eno16780032.ipv4.address }} 12005" ] }
