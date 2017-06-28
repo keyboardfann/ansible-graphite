@@ -7,8 +7,8 @@ Documentation=https://github.com/unixsurfer/haproxystats
 [Service]
 Type=simple
 Environment="CONFIG=/etc/haproxystats.conf"
-User=haproxystats
-Group=haproxystats
+User=root
+Group=root
 ExecStart=/usr/bin/haproxystats-pull -f $CONFIG
 TimeoutStartSec=3
 TimeoutStopSec=6
