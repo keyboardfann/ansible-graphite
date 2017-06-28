@@ -1,0 +1,20 @@
+   - name: Installation haproxystats on CentOS 7.x Server
+     hosts: all
+     roles:
+       - name: install dependency packages
+         role: haproxystats/roles/install-dependency-package
+
+       - name: install haproxystats
+         role: haproxystats/roles/install-haproxystats
+
+       - name: create new user
+         role: haproxystats/roles/create-newuser
+
+       - name: permission setting
+         role: haproxystats/roles/haproxy-socket-dir-permission
+
+       - name: haproxystats systemd config file
+         role: haproxystats/roles/systemd-files
+
+       - name: haproxystats config file
+         role: haproxystats/roles/haproxystats-config-file
