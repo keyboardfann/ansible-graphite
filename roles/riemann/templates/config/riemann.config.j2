@@ -76,7 +76,7 @@
 (streams
   #(info %)
 (where (not (or (service #"^riemann ")(service #"^telegraf-health*")))
-  (kafka-output "telegraf"))
+  (kafka-output "tng"))
 (where  (service #"^riemann ")
   (graphite {:host "{{ graphite_server_ip }}"
              :port {{ graphite_server_port }} } ))
