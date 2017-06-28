@@ -9,7 +9,7 @@ notification_email_from: test@redcypress.com.tw
 
 keepalived_bind_interface: eno16780032
 auth_pass: itsahaproxy
-keepalived_vip: 10.62.4.241
+keepalived_vip: 10.62.4.233 
 
 
 # haproxy config
