@@ -1,0 +1,11 @@
+[Unit]
+Description=carbon-cache instance %i (graphite)
+
+[Service]
+ExecStartPre=/bin/rm -f /var/run/carbon-cache-%i.pid
+ExecStart=/opt/graphite/bin/carbon-cache.py --config=/opt/graphite/conf/carbon.conf --pidfile=/var/run/carbon-cache-%i.pid --instance=%i start
+Type=forking
+PIDFile=/var/run/carbon-cache-%i.pid
+
+[Install]
+WantedBy=multi-user.target

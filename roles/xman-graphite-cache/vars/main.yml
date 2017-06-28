@@ -1,0 +1,92 @@
+---
+# base setting
+NIC_name: eno16780032
+
+# Carbon
+data_dir: "/lv_data01/graphite/storage/whisper"
+log_dir: "/lv_data01/graphite/storage/log"
+carbon_metrics_prefix: prod.sys.fp.carbon
+carbon_metric_interval: 60
+max_updates_per_second: 200
+max_create_per_minute: 25
+log_listener_connections: False
+
+cache_instance:
+  - {instance: "1",line_port: "2013",pinckle_port: "2014",cache_query_port: "7012"}
+  - {instance: "2",line_port: "2023",pinckle_port: "2024",cache_query_port: "7022"}
+  - {instance: "3",line_port: "2033",pinckle_port: "2034",cache_query_port: "7032"}
+  - {instance: "4",line_port: "2043",pinckle_port: "2044",cache_query_port: "7042"}
+  - {instance: "5",line_port: "2053",pinckle_port: "2054",cache_query_port: "7052"}
+  - {instance: "6",line_port: "2063",pinckle_port: "2064",cache_query_port: "7062"}
+  - {instance: "7",line_port: "2073",pinckle_port: "2074",cache_query_port: "7072"}
+
+# Relay, relay_method:consistent-hashing / rules
+relay_method: consistent-hashing
+relay_factor: 1
+
+destinations:
+  - 127.0.0.1:2014:1
+  - 127.0.0.1:2024:2
+  - 127.0.0.1:2034:3
+  - 127.0.0.1:2044:4
+  - 127.0.0.1:2054:5
+  - 127.0.0.1:2064:6
+  - 127.0.0.1:2074:7
+
+# for relay_method: consistent-hashing
+relay_instance:
+  - {instance: "1",line_port: "2103",pinckle_port: "2104"}
+  
+
+# for relay_method: rules
+relay_rule:
+  - {metric_name: "stats.gauges.MGS_", pattern: '^stats.gauges.MGS_.*\..*', destinations: "10.1.5.171:2004, 10.1.5.199:2004, 10.1.4.62:2004", continue: "False"}
+
+# Storage retentions
+storage_schema:
+  - {metric_name: "stats.gauges.MGS_", pattern: '^stats.gauges.MGS_.*\..*', retentions: '1m:1d,5m:10d,1h:40d,4h:120d'}
+  - {metric_name: "stats.timers.MGS_", pattern: '^stats.timers.MGS_.*\..*', retentions: '1m:1d,5m:10d,1h:40d,4h:120d'}
+  - {metric_name: "stats_counts.MGS_", pattern: '^stats_counts.MGS_.*\..*', retentions: '1m:1d,5m:10d,1h:40d,4h:120d'}
+  - {metric_name: "stats.gauges.Eclipse", pattern: '^stats.gauges.Eclipse\..*', retentions: '1m:1d,5m:10d,1h:40d,4h:120d'}
+  - {metric_name: "stats.gauges.Veyron", pattern: '^stats.gauges.Veyron\..*', retentions: '1m:1d,5m:10d,1h:40d,4h:120d'}
+  - {metric_name: "stats.timers.Veyron", pattern: '^stats.timers.Veyron\..*', retentions: '1m:1d,5m:10d,1h:40d,4h:120d'}
+  - {metric_name: "stats_counts.Veyron", pattern: '^stats_counts.Veyron\..*', retentions: '1m:1d,5m:10d,1h:40d,4h:120d'}
+  - {metric_name: "prod_sys_fp_carbon", pattern: '^prod.sys.fp.carbon\..*', retentions: '60s:90d,5m:1y,1h:3y'}
+  - {metric_name: "carbon", pattern: '^carbon\.', retentions: '60s:90d'}
+  - {metric_name: "prod_sys", pattern: '^prod.sys\..*', retentions: '60s:30d,15m:90d,1h:1y'}
+  - {metric_name: "prod_events", pattern: '^prod.events\..*', retentions: '10s:30d,60s:90d,5m:1y'}
+  - {metric_name: "stats.gauges.updog", pattern: '^stats.gauges.updog\..*', retentions: '5s:60m,60s:5d,5m:9d,10m:14d,30m:30d,1h:60d'}
+  - {metric_name: "stats", pattern: '^stats\..*', retentions: '1m:1d,5m:30d,1h:1y'}
+  - {metric_name: "stats_counts", pattern: '^stats_counts\..*', retentions: '1m:1d,5m:30d,1h:1y'}
+  - {metric_name: "collectd", pattern: '^collectd\.', retentions: '60s:90d'}
+  - {metric_name: "staging", pattern: '^staging\.', retentions: '1m:5m'}
+  - {metric_name: "default", pattern: '.*', retentions: '1m:1d,5m:30d,1h:1y'}
+
+
+# Graphite web
+## It's important to set true only in the first time
+first_install: true
+graphite_bootstrap_server: tng1522.tng.mgsops.com
+
+secret_key: nTbtgMFfWALx4Vj3
+memcached_host: 127.0.0.1
+memcached_port: 11211
+
+mysql_root_password: QXJDTyAKawJcX4kE
+mysql_grphite_password: graphiteV9qnyCuhmYhqVD6N
+
+carbonlink_hosts:
+  - tng1522:7012:1
+  - tng1522:7022:2
+  - tng1522:7032:3
+  - tng1522:7042:4
+  - tng1522:7052:5
+  - tng1522:7062:5
+  - tng1522:7072:5
+  - tng1523:7012:1
+  - tng1523:7022:2
+  - tng1523:7032:3
+  - tng1523:7042:4
+  - tng1523:7052:5 
+  - tng1523:7062:5 
+  - tng1523:7072:5 

@@ -1,0 +1,13 @@
+---
+## Install Memcached
+- name: install memcached packages
+  yum: pkg={{ item }} update_cache=yes
+  with_items:
+    - memcached
+    - python-memcached
+
+- name: Copy memcached config to /etc/sysconfig
+  copy:
+    src: memcached
+    dest: /etc/sysconfig/memcached
+

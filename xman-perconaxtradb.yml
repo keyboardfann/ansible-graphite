@@ -1,0 +1,6 @@
+---
+- name: deploy xman Percona Xtradb on host
+  hosts: all
+  roles:
+    - role: xman-percona-xtradb
+

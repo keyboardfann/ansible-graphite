@@ -1,0 +1,6 @@
+---
+- name: deploy xman graphite-cache on host
+  hosts: all
+  roles:
+    - xman-graphite-web
+

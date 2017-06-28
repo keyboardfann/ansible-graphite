@@ -1,0 +1,50 @@
+#!/bin/sh
+
+graphite_mysql_root_password={{ mysql_root_password }}
+
+## Start mysql
+systemctl start mysql
+
+## Run mysql_secure_installation to secure mysql
+echo "Run mysql_secure_installation to secure mysql"
+
+
+SECURE_MYSQL=$(expect -c "
+set timeout 10
+spawn mysql_secure_installation
+expect \"Enter current password for root (enter for none):\"
+send \"\r\"
+expect \"Change the root password?\"
+send \"n\r\"
+expect \"Remove anonymous users?\"
+send \"y\r\"
+expect \"Disallow root login remotely?\"
+send \"y\r\"
+expect \"Remove test database and access to it?\"
+send \"y\r\"
+expect \"Reload privilege tables now?\"
+send \"y\r\"
+expect eof
+")
+
+echo "$SECURE_MYSQL"
+
+## Change mysql  root password
+echo "Change MYSQL root password"
+
+
+graphite_mysql_root_password_RESULT=$(expect -c "
+set timeout 10
+spawn mysql -u root -p
+expect \"Enter password:\"
+send \"\r\"
+expect \"mysql>\"
+send \"use mysql\r\"
+expect \"mysql>\"
+send \"UPDATE user SET Password=PASSWORD(\'$graphite_mysql_root_password\') WHERE User='root';\r\"
+expect \"mysql>\"
+send \"flush privileges;\r\"
+expect eof
+")
+
+echo "$graphite_mysql_root_password_RESULT"

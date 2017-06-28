@@ -1,0 +1,6 @@
+---
+- name: deploy xman memcached on host
+  hosts: all
+  roles:
+    - role: xman-memcached
+
