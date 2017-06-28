@@ -8,8 +8,8 @@ Documentation=https://github.com/unixsurfer/haproxystats
 Type=simple
 KillMode=process
 Environment="CONFIG=/etc/haproxystats.conf"
-User=haproxystats
-Group=haproxystats
+User=root
+Group=root
 ExecStart=/usr/bin/haproxystats-process -f $CONFIG
 TimeoutStartSec=3
 TimeoutStopSec=60
