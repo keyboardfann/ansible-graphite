@@ -17,8 +17,8 @@
   file:
     path: "{{ logfolder }}"
     state: directory
-    owner: telegraf
-    group: telegraf
+    owner: riemann
+    group: riemann
     recurse: true
 
 ## Copy Riemann config
