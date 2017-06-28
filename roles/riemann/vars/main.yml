@@ -1,6 +1,6 @@
 ---
 # Riemann config
-log_path: "/lv_data01/riemann/riemann.log"
+logfolder: "/lv_data01/riemann"
 internal_metrics_interval: 60
 riemann_jvm_heap: 4096m
 

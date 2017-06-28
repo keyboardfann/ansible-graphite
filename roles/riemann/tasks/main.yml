@@ -12,6 +12,15 @@
     name: https://github.com/riemann/riemann/releases/download/0.2.13/riemann-0.2.13-1.noarch.rpm
     state: present
 
+# Ensure log folder exist
+- name: Ensure log dir exist
+  file:
+    path: "{{ logfolder }}"
+    state: directory
+    owner: telegraf
+    group: telegraf
+    recurse: true
+
 ## Copy Riemann config
 - name: copy riemann config to /etc/riemann/
   template: 
