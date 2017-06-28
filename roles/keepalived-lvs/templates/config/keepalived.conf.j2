@@ -21,7 +21,7 @@ vrrp_instance VI_1 {
           {%- endif %}
 
     interface {{keepalived_bind_interface}}
-    virtual_router_id 100
+    virtual_router_id 200
     priority {% if play_hosts.index(inventory_hostname)==0 -%}
              100
              {% elif play_hosts.index(inventory_hostname)==1 -%}
