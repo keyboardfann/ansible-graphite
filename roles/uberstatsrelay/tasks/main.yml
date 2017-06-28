@@ -1,4 +1,10 @@
 ---
+## Install dependency package
+- name: install dependency packages
+  yum: pkg={{ item }} update_cache=yes
+  with_items:
+    - libev
+
 ## Copy binary to /usr/sbin
 - name: copy statsrelay binary to /usr/local/sbin/
   copy:
