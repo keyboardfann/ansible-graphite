@@ -14,9 +14,9 @@ keepalived_vip: 10.62.4.233
 
 # haproxy config
 maxconn: 16384
-stats_port: 8090
+stats_port: 80
 stats_account: admin
-stats_password: itsaadmin
+stats_password: itsaeastadmin
 log_dir: /var/log/haproxy
 
 
@@ -26,4 +26,4 @@ log_dir: /var/log/haproxy
 
 LB:
  - {listen_name: "riemann", protocol: "TCP", bind_ip: "0.0.0.0", bind_port: "12010", maxconnection: "50000", realserver: [ "riemann1 10.62.4.191:5555", "riemann2 10.62.4.192:5555", "riemann3 10.62.4.193:5555" ] }
- - {listen_name: "graphiterelay", protocol: "TCP", bind_ip: "0.0.0.0", bind_port: "12020", maxconnection: "50000", realserver: [ "r1s1 10.62.4.197:2013", "r1s2 10.62.4.197:2023", "r1s3 10.62.4.197:2033", "r1s4 10.62.4.197:2043", "r1s4 10.62.4.197:2053", "r1s6 10.62.4.197:2063", "r2s1 10.62.4.198:2013", "r2s2 10.62.4.198:2023", "r2s3 10.62.4.198:2033", "r2s4 10.62.4.198:2043", "r2s5 10.62.4.198:2053", "r2s6 10.62.4.198:2063" ] }
+ - {listen_name: "graphiterelay", protocol: "TCP", bind_ip: "0.0.0.0", bind_port: "12020", maxconnection: "50000", realserver: [ "r1s1 10.62.4.197:2013", "r1s2 10.62.4.197:2023", "r1s3 10.62.4.197:2033", "r1s4 10.62.4.197:2043", "r1s5 10.62.4.197:2053", "r1s6 10.62.4.197:2063", "r2s1 10.62.4.198:2013", "r2s2 10.62.4.198:2023", "r2s3 10.62.4.198:2033", "r2s4 10.62.4.198:2043", "r2s5 10.62.4.198:2053", "r2s6 10.62.4.198:2063" ] }
