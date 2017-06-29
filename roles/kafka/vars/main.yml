@@ -22,5 +22,5 @@ kafka_heapsize: 6g
 JMX_Port: 9999
 
 # Kafka internal metrics to graphite LB
-graphite_server_LB: tng1520
-graphite_port: 2103
+graphite_server_LB: 10.62.4.233
+graphite_port: 12020

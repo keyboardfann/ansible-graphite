@@ -11,5 +11,5 @@ kafka_brokers:
   - tng1514:9092
 
 # output to graphite config
-graphite_server_ip: tng1520
-graphite_server_port: 2103
+graphite_server_ip: 10.62.4.233
+graphite_server_port: 12020

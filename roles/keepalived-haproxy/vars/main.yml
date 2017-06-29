@@ -25,6 +25,5 @@ log_dir: /var/log/haproxy
 #  - {listen_name: "name", protocol: "TCP/HTTP", bind_ip: "0.0.0.0", bind_port: "12020", maxconnection: "3000", realserver: [ "servername1 ip:port","servername2 ip:port", "servername3 ip:port"  ] }
 
 LB:
- - {listen_name: "riemann", protocol: "TCP", bind_ip: "0.0.0.0", bind_port: "12010", maxconnection: "10000", realserver: [ "riemann1 10.62.4.191:5555", "riemann2 10.62.4.192:5555", "riemann3 10.62.4.193:5555" ] }
- - {listen_name: "graphiteserver", protocol: "TCP", bind_ip: "0.0.0.0", bind_port: "12020", maxconnection: "10000", realserver: [ "graphite1 10.62.4.160:2013", "graphite2 10.62.4.161:2013" ] }
- - {listen_name: "graphiteweb", protocol: "HTTP", bind_ip: "0.0.0.0", bind_port: "12030", maxconnection: "50", realserver: [ "graphiteweb1 10.62.4.160:80", "graphiteweb2 10.62.4.161:80" ] }
+ - {listen_name: "riemann", protocol: "TCP", bind_ip: "0.0.0.0", bind_port: "12010", maxconnection: "50000", realserver: [ "riemann1 10.62.4.191:5555", "riemann2 10.62.4.192:5555", "riemann3 10.62.4.193:5555" ] }
+ - {listen_name: "graphiterelay", protocol: "TCP", bind_ip: "0.0.0.0", bind_port: "12020", maxconnection: "50000", realserver: [ "r1s1 10.62.4.197:2013", "r1s2 10.62.4.197:2023", "r1s3 10.62.4.197:2033", "r1s4 10.62.4.197:2043", "r1s4 10.62.4.197:2053", "r1s6 10.62.4.197:2063", "r2s1 10.62.4.198:2013", "r2s2 10.62.4.198:2023", "r2s3 10.62.4.198:2033", "r2s4 10.62.4.198:2043", "r2s5 10.62.4.198:2053", "r2s6 10.62.4.198:2063" ] }
