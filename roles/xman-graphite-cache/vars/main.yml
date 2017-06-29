@@ -90,3 +90,5 @@ carbonlink_hosts:
   - tng1523:7052:5 
   - tng1523:7062:5 
   - tng1523:7072:5 
+
+carbonlink_timeout: 10
