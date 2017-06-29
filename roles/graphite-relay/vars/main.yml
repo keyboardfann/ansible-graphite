@@ -12,7 +12,7 @@ relay_method: rules
 relay_factor: 1
 
 destinations:
-  - 127.0.0.1:2014:1
+  - tng1520:2104,tng1521:2104,tng1520:2204,tng1521:2204,tng1522:2104,tng1523:2104
 
 # for relay_method: consistent-hashing
 relay_instance:
