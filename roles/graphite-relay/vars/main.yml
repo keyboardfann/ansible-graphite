@@ -26,19 +26,19 @@ relay_instance:
 
 # for relay_method: rules
 relay_rule:
-  - {metric_name: "stats.gauges.MGS_", pattern: '^stats.gauges.MGS_.*\..*', destinations: "tng1522:2004, tng1522:2004", continue: "False"}
-  - {metric_name: "stats.timers.MGS_", pattern: '^stats.timers.MGS_.*\..*', destinations: "tng1522:2004, tng1522:2004", continue: "False"}
-  - {metric_name: "stats_counts.MGS_", pattern: '^stats_counts.MGS_.*\..*', destinations: "tng1522:2004, tng1522:2004", continue: "False"}
-  - {metric_name: "stats.gauges.Eclipse", pattern: '^stats.gauges.Eclipse\..*', destinations: "tng1522:2004, tng1522:2004", continue: "False"}
-  - {metric_name: "stats.gauges.Veyron", pattern: '^stats.gauges.Veyron\..*', destinations: "tng1522:2004, tng1522:2004", continue: "False"}
-  - {metric_name: "stats.timers.Veyron", pattern: '^stats.timers.Veyron\..*', destinations: "tng1522:2004, tng1522:2004", continue: "False"}
-  - {metric_name: "stats_counts.Veyron", pattern: '^stats_counts.Veyron\..*', destinations: "tng1522:2004, tng1522:2004", continue: "False"}
-  - {metric_name: "stats.gauges.api", pattern: '^stats.gauges.api\..*', destinations: "tng1522:2004, tng1522:2004", continue: "False"}
-  - {metric_name: "stats.timers.api", pattern: '^stats.timers.api\..*', destinations: "tng1522:2004, tng1522:2004", continue: "False"}
-  - {metric_name: "stats_counts.api", pattern: '^stats_counts.api\..*', destinations: "tng1522:2004, tng1522:2004", continue: "False"}
+  - {metric_name: "stats.gauges.MGS_", pattern: '^stats.gauges.MGS_.*\..*', destinations: "tng1522:2104, tng1523:2104", continue: "False"}
+  - {metric_name: "stats.timers.MGS_", pattern: '^stats.timers.MGS_.*\..*', destinations: "tng1522:2104, tng1523:2104", continue: "False"}
+  - {metric_name: "stats_counts.MGS_", pattern: '^stats_counts.MGS_.*\..*', destinations: "tng1522:2104, tng1523:2104", continue: "False"}
+  - {metric_name: "stats.gauges.Eclipse", pattern: '^stats.gauges.Eclipse\..*', destinations: "tng1522:2104, tng1523:2104", continue: "False"}
+  - {metric_name: "stats.gauges.Veyron", pattern: '^stats.gauges.Veyron\..*', destinations: "tng1522:2104, tng1523:2104", continue: "False"}
+  - {metric_name: "stats.timers.Veyron", pattern: '^stats.timers.Veyron\..*', destinations: "tng1522:2104, tng1523:2104", continue: "False"}
+  - {metric_name: "stats_counts.Veyron", pattern: '^stats_counts.Veyron\..*', destinations: "tng1522:2104, tng1523:2104", continue: "False"}
+  - {metric_name: "stats.gauges.api", pattern: '^stats.gauges.api\..*', destinations: "tng1522:2104, tng1523:2104", continue: "False"}
+  - {metric_name: "stats.timers.api", pattern: '^stats.timers.api\..*', destinations: "tng1522:2104, tng1523:2104", continue: "False"}
+  - {metric_name: "stats_counts.api", pattern: '^stats_counts.api\..*', destinations: "tng1522:2104, tng1523:2104", continue: "False"}
 
 relay_default_rule:
-  - {metric_name: "default", destinations: "tng1522:2004, tng1522:2004"}
+  - {metric_name: "default", destinations: "tng1520:2104, tng1521:2104, tng1520:2204, tng1521:2204"}
 
 # Storage retentions
 storage_schema:
