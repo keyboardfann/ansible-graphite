@@ -3,16 +3,16 @@
 ipaddress: "{{ ansible_eno16780032.ipv4.address }}"
 
 statsrelay1:
-  - {bindip: "{{ ipaddress }}",bindport: "12001",backend: [ "0: tng1502:12000:udp","1: tng1503:12000:udp","2: tng1504:12000:udp","3: tng1505:12000:udp","4: tng1506:12000:udp","5: tng1507:12000:udp","6: tng1508:12000:udp","7: tng1509:12000:udp" ]}
+  - {bindip: "{{ ipaddress }}",bindport: "12001",backend: [ "0: tng1502:12000:udp","1: tng1503:12000:udp","2: tng1504:12000:udp","3: tng1505:12000:udp","4: tng1506:12000:udp","5: tng1507:12000:udp","6: tng1508:12000:udp","7: tng1509:12000:udp","8: tng1502:12000:udp" ,"9: tng1503:12000:udp" ,"10: tng1504:12000:udp" ,"11: tng1505:12000:udp" ,"12: tng1506:12000:udp" ,"13: tng1507:12000:udp" ,"14: tng1508:12000:udp" ,"15: tng1509:12000:udp"  ]}
 
 statsrelay2:
-  - {bindip: "{{ ipaddress }}",bindport: "12002",backend: [ "0: tng1502:12000:udp","1: tng1503:12000:udp","2: tng1504:12000:udp","3: tng1505:12000:udp","4: tng1506:12000:udp","5: tng1507:12000:udp","6: tng1508:12000:udp","7: tng1509:12000:udp" ]}
+  - {bindip: "{{ ipaddress }}",bindport: "12002",backend: [ "0: tng1502:12000:udp","1: tng1503:12000:udp","2: tng1504:12000:udp","3: tng1505:12000:udp","4: tng1506:12000:udp","5: tng1507:12000:udp","6: tng1508:12000:udp","7: tng1509:12000:udp","8: tng1502:12000:udp" ,"9: tng1503:12000:udp" ,"10: tng1504:12000:udp" ,"11: tng1505:12000:udp" ,"12: tng1506:12000:udp" ,"13: tng1507:12000:udp" ,"14: tng1508:12000:udp" ,"15: tng1509:12000:udp"  ]}
 
 statsrelay3:
-  - {bindip: "{{ ipaddress }}",bindport: "12003",backend: [ "0: tng1502:12000:udp","1: tng1503:12000:udp","2: tng1504:12000:udp","3: tng1505:12000:udp","4: tng1506:12000:udp","5: tng1507:12000:udp","6: tng1508:12000:udp","7: tng1509:12000:udp" ]}
+  - {bindip: "{{ ipaddress }}",bindport: "12003",backend: [ "0: tng1502:12000:udp","1: tng1503:12000:udp","2: tng1504:12000:udp","3: tng1505:12000:udp","4: tng1506:12000:udp","5: tng1507:12000:udp","6: tng1508:12000:udp","7: tng1509:12000:udp","8: tng1502:12000:udp" ,"9: tng1503:12000:udp" ,"10: tng1504:12000:udp" ,"11: tng1505:12000:udp" ,"12: tng1506:12000:udp" ,"13: tng1507:12000:udp" ,"14: tng1508:12000:udp" ,"15: tng1509:12000:udp"  ]}
 
 statsrelay4:
-  - {bindip: "{{ ipaddress }}",bindport: "12004",backend: [ "0: tng1502:12000:udp","1: tng1503:12000:udp","2: tng1504:12000:udp","3: tng1505:12000:udp","4: tng1506:12000:udp","5: tng1507:12000:udp","6: tng1508:12000:udp","7: tng1509:12000:udp" ]}
+  - {bindip: "{{ ipaddress }}",bindport: "12004",backend: [ "0: tng1502:12000:udp","1: tng1503:12000:udp","2: tng1504:12000:udp","3: tng1505:12000:udp","4: tng1506:12000:udp","5: tng1507:12000:udp","6: tng1508:12000:udp","7: tng1509:12000:udp","8: tng1502:12000:udp" ,"9: tng1503:12000:udp" ,"10: tng1504:12000:udp" ,"11: tng1505:12000:udp" ,"12: tng1506:12000:udp" ,"13: tng1507:12000:udp" ,"14: tng1508:12000:udp" ,"15: tng1509:12000:udp"  ]}
 
 statsrelay5:
-  - {bindip: "{{ ipaddress }}",bindport: "12005",backend: [ "0: tng1502:12000:udp","1: tng1503:12000:udp","2: tng1504:12000:udp","3: tng1505:12000:udp","4: tng1506:12000:udp","5: tng1507:12000:udp","6: tng1508:12000:udp","7: tng1509:12000:udp" ]}
+  - {bindip: "{{ ipaddress }}",bindport: "12005",backend: [ "0: tng1502:12000:udp","1: tng1503:12000:udp","2: tng1504:12000:udp","3: tng1505:12000:udp","4: tng1506:12000:udp","5: tng1507:12000:udp","6: tng1508:12000:udp","7: tng1509:12000:udp","8: tng1502:12000:udp" ,"9: tng1503:12000:udp" ,"10: tng1504:12000:udp" ,"11: tng1505:12000:udp" ,"12: tng1506:12000:udp" ,"13: tng1507:12000:udp" ,"14: tng1508:12000:udp" ,"15: tng1509:12000:udp"  ]}
