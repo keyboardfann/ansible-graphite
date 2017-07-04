@@ -47,7 +47,6 @@
     state: directory
     owner: apache
     group: apache
-    recurse: true
 
 - name: Ensure log dir exist
   file:
