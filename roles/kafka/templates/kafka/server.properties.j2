@@ -163,7 +163,7 @@ kafka.metrics.reporters=com.criteo.kafka.KafkaGraphiteMetricsReporter
 kafka.graphite.metrics.reporter.enabled=true
 kafka.graphite.metrics.host={{ graphite_server_LB }}
 kafka.graphite.metrics.port={{ graphite_port }}
-kafka.graphite.metrics.group=kafka.{{ ansible_hostname }}
+kafka.graphite.metrics.group=prod.sys.tng.kafka.{{ ansible_hostname }}
 # This can be use to exclude some metrics from graphite 
 # # since kafka has quite a lot of metrics, it is useful
 # # if you have many topics/partitions.
