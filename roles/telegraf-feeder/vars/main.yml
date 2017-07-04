@@ -6,6 +6,7 @@ debug: false
 logfolder: "/lv_data01/telegraf/"
 
 # output graphite
+metrics_prefix: prod.sys.tng.telegraf-feeder
 graphite_servers:
   - tng1518:2013
   - tng1518:2023
