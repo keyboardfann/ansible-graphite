@@ -7,4 +7,4 @@ graphite_server: 10.62.4.233
 graphite_port: 12020
 pull_workers: 4
 process_workers: 2
-
+metrics_namespace: prod.sys.tng.loadbalancers
