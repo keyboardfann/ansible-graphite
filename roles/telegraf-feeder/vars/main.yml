@@ -1,6 +1,6 @@
 ---
 # telegraf gerneral config
-metric_batch_size: 2000
+metric_batch_size: 100
 metric_buffer_limit: 20000
 debug: false
 logfolder: "/lv_data01/telegraf/"
