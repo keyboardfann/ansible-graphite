@@ -86,7 +86,7 @@
   ## Only one of the endpoints will be written to with each iteration.
   servers = ["{{ graphite_servers|join("\",\"") }}"]
   ## Prefix metrics name
-  prefix = "{{ metrics_prefix }}"
+  prefix = ""
   ## Graphite output template
   ## see https://github.com/influxdata/telegraf/blob/master/docs/DATA_FORMATS_OUTPUT.md
   template = "host.tags.measurement.field"
