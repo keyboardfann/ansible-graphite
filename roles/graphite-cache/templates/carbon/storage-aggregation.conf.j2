@@ -1,0 +1,6 @@
+{% for item in storage_aggregation  %}
+[{{ item.name }}]
+pattern = {{ item.pattern }}
+xFilesFactor = {{ item.xFilesFactor }}
+aggregationMethod = {{ item.aggregationMethod }}
+{% endfor %}

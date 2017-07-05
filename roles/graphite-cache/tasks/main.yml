@@ -78,6 +78,19 @@
     src: carbon/storage-schemas.conf.j2
     dest: /opt/graphite/conf/storage-schemas.conf
 
+## blacklist config
+- name: copy graphite blacklist.conf to /opt/graphite/conf
+  template:
+    src: carbon/blacklist.conf.j2
+    dest: /opt/graphite/conf/blacklist.conf
+
+## storage-aggregation config
+- name: copy graphite storage-aggregation.conf to /opt/graphite/conf
+  template:
+    src: carbon/storage-aggregation.conf.j2
+    dest: /opt/graphite/conf/storage-aggregation.conf
+
+
 ## Graphite web config
 - name: copy graphite.wsgi to /opt/graphite/conf
   copy:
@@ -98,6 +111,7 @@
   template:
     src: web/local_settings.py.j2
     dest: /opt/graphite/webapp/graphite/local_settings.py
+
 
 ## Init graphite DB when first_install == true
 - name: Copy init script to /var/tmp
