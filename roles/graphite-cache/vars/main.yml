@@ -19,8 +19,8 @@ cache_instance:
   - {instance: "5",line_port: "2053",pinckle_port: "2054",cache_query_port: "7052"}
 
 blacklist:
-  - "stats\.timers\.xman\.filter\..*"
-  - "(?!stats\.timers\.casino\.viper\.ext\.*)stats\.timers\.casino\.viper\..*"
+  - 'stats\.timers\.xman\.filter\..*'
+  - '(?!stats\.timers\.casino\.viper\.ext\.*)stats\.timers\.casino\.viper\..*'
 
 # Relay, relay_method:consistent-hashing / rules
 relay_method: consistent-hashing
