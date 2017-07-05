@@ -20,6 +20,10 @@ cache_instance:
   - {instance: "6",line_port: "2063",pinckle_port: "2064",cache_query_port: "7062"}
   - {instance: "7",line_port: "2073",pinckle_port: "2074",cache_query_port: "7072"}
 
+blacklist:
+  - 'stats\.timers\.xman\.filter\..*'
+  - 'stats\.timers\.casino\.viper\..*'
+
 # Relay, relay_method:consistent-hashing / rules
 relay_method: consistent-hashing
 relay_factor: 1
@@ -61,6 +65,18 @@ storage_schema:
   - {metric_name: "collectd", pattern: '^collectd\.', retentions: '60s:90d'}
   - {metric_name: "staging", pattern: '^staging\.', retentions: '1m:5m'}
   - {metric_name: "default", pattern: '.*', retentions: '1m:1d,5m:30d,1h:1y'}
+
+# Storage Aggregation
+storage_aggregation:
+  - {name: "min", pattern: '\.min$', xFilesFactor: "0", aggregationMethod: 'min'}
+  - {name: "lower", pattern: '\.lower$', xFilesFactor: "0", aggregationMethod: 'min'}
+  - {name: "max", pattern: '\.max$', xFilesFactor: "0", aggregationMethod: 'max'}
+  - {name: "upper", pattern: '\.upper$', xFilesFactor: "0", aggregationMethod: 'max'}
+  - {name: "sum", pattern: '\.sum$', xFilesFactor: "0", aggregationMethod: 'sum'}
+  - {name: "count", pattern: '\.count$', xFilesFactor: "0", aggregationMethod: 'sum'}
+  - {name: "stats_count", pattern: '^stats_counts.*', xFilesFactor: "0", aggregationMethod: 'sum'}
+  - {name: "stats.gauges", pattern: '^stats.gauges.*', xFilesFactor: "0", aggregationMethod: 'last'}
+  - {name: "default_average", pattern: '.*', xFilesFactor: "0", aggregationMethod: 'average'}
 
 
 # Graphite web
