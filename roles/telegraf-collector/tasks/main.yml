@@ -35,7 +35,7 @@
 
 ## Check Zone exist or not
 - name: Check firewalld zone
-  command: firewall-cmd --permanent --get-zones |grep telegrafcollector |wc -l
+  shell: firewall-cmd --permanent --get-zones |grep telegrafcollector |wc -l
   register: zone_result
 
 ## Create telegraf collector firewall rule
