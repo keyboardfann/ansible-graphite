@@ -7,8 +7,8 @@ debug: false
 logfolder: "/lv_data01/telegraf/"
 
 # output riemann
-riemann_ip: tng1512
-riemann_port: 5555
+riemann_ip: 10.62.4.233
+riemann_port: 12010
 
 # input statsd
 statsd_ip: "{{ ansible_eno16780032.ipv4.address }}"
