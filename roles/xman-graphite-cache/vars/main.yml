@@ -64,6 +64,7 @@ storage_schema:
   - {metric_name: "stats_counts", pattern: '^stats_counts\..*', retentions: '1m:1d,5m:30d,1h:1y'}
   - {metric_name: "collectd", pattern: '^collectd\.', retentions: '60s:90d'}
   - {metric_name: "staging", pattern: '^staging\.', retentions: '1m:5m'}
+  - {metric_name: "tng_telegraf", pattern: '^tng*\..*', retentions: '60s:90d,5m:1y,1h:3y'}
   - {metric_name: "default", pattern: '.*', retentions: '1m:1d,5m:30d,1h:1y'}
 
 # Storage Aggregation
