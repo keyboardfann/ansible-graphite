@@ -33,9 +33,15 @@
     name: firewalld
     state: started
 
+## Check Zone exist or not
+- name: Check firewalld zone
+  command: firewall-cmd --permanent --get-zones |grep telegrafcollector |wc -l
+  register: zone_result
+
 ## Create telegraf collector firewall rule
-- name: Create telegraf collector zone
+- name: Create telegraf collector zone 
   command: firewall-cmd --permanent --new-zone telegrafcollector
+  when: zone_result.stdout = 0
 
 - firewalld:
     zone: telegrafcollector
