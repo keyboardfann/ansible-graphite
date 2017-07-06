@@ -146,7 +146,6 @@
     state: enabled
 
 ## Reload firewalld
-- service:
-    name: firewalld
-    state: reloaded
+- name: Reload Firewalld
+  command: firewall-cmd --reload
 

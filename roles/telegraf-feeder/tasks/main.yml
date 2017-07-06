@@ -29,7 +29,6 @@
     dest: /etc/telegraf/telegraf.d/telegraf_kafka_graphite.conf
 
 ## Reload firewalld
-- service:
-    name: firewalld
-    state: reloaded
+- name: Reload Firewalld
+  command: firewall-cmd --reload
 
