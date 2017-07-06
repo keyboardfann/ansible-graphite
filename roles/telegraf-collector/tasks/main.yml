@@ -28,6 +28,11 @@
     src: config/telegraf_statsd_riemann.conf.j2
     dest: /etc/telegraf/telegraf.d/telegraf_statsd_riemann.conf
 
+## Start firewalld 
+- service:
+    name: firewalld
+    state: started
+
 ## Create telegraf collector firewall rule
 - name: Create telegraf collector zone
   command: firewall-cmd --permanent --new-zone telegrafcollector
