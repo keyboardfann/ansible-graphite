@@ -27,3 +27,13 @@
   template:
     src: config/telegraf_statsd_riemann.conf.j2
     dest: /etc/telegraf/telegraf.d/telegraf_statsd_riemann.conf
+
+## Create telegraf collector firewall rule
+- name: Create telegraf collector zone
+  command: firewall-cmd --permanent --new-zone telegrafcollector
+
+- firewalld:
+    zone: telegrafcollector
+    port: 12000
+    permanent: true
+    state: enabled
