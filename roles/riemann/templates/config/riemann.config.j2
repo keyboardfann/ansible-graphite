@@ -37,8 +37,8 @@
               followed by the service, with spaces converted to dots."
   [event]
   (let [;; replace /value by "" , replace all "/" by "." in service
-        service (clojure.string/replace (:service event) #"/value" "")
         service (clojure.string/replace (:service event) #"/" ".")
+        service (clojure.string/replace (:service event) #"/value" "")
         ;; returns the statd metric type using :metric_type value
         metric-type (condp = (:metric_type event)
                       "counter" "stats_counts"
