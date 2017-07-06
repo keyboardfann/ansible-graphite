@@ -11,3 +11,14 @@
     src: memcached
     dest: /etc/sysconfig/memcached
 
+## memcached port
+- firewalld:
+    port: 11211/udp
+    permanent: true
+    state: enabled
+
+- firewalld:
+    port: 11211/tcp
+    permanent: true
+    state: enabled
+

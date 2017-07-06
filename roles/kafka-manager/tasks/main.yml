@@ -20,3 +20,15 @@
   template:
     src: systemctl/kafka-manager.service.j2
     dest: /usr/lib/systemd/system/kafka-manager.service
+
+## Start firewalld 
+- service:
+    name: firewalld
+    state: started
+
+## kafka-manager port
+- firewalld:
+    port: 80/tcp
+    permanent: true
+    state: enabled
+

@@ -50,3 +50,15 @@
     dest: "{{ check_script_folder }}/check_port.pl"
     mode: 0744
 
+## Start firewalld 
+- service:
+    name: firewalld
+    state: started
+
+## statsd udp port
+- firewalld:
+    port: 12000/udp
+    permanent: true
+    state: enabled
+
+

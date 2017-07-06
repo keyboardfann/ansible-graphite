@@ -10,4 +10,4 @@ zookeeper_port: 2181
 basicAuthentication_enabled: true
 basicAuthentication_username: admin
 basicAuthentication_password: itsaeastadmin
-web_port: 9000
+web_port: 80

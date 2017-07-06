@@ -79,3 +79,69 @@
     src: systemctl/carbon-relay@.service.j2
     dest: /usr/lib/systemd/system/carbon-relay@.service
 
+## Start firewalld 
+- service:
+    name: firewalld
+    state: started
+
+## carbon-relay port
+- firewalld:
+    port: 2013/tcp
+    permanent: true
+    state: enabled
+
+- firewalld:
+    port: 2014/tcp
+    permanent: true
+    state: enabled
+
+- firewalld:
+    port: 2023/tcp
+    permanent: true
+    state: enabled
+
+- firewalld:
+    port: 2024/tcp
+    permanent: true
+    state: enabled
+
+- firewalld:
+    port: 2033/tcp
+    permanent: true
+    state: enabled
+
+- firewalld:
+    port: 2034/tcp
+    permanent: true
+    state: enabled
+
+- firewalld:
+    port: 2043/tcp
+    permanent: true
+    state: enabled
+
+- firewalld:
+    port: 2044/tcp
+    permanent: true
+    state: enabled
+
+- firewalld:
+    port: 2053/tcp
+    permanent: true
+    state: enabled
+
+- firewalld:
+    port: 2054/tcp
+    permanent: true
+    state: enabled
+
+- firewalld:
+    port: 2063/tcp
+    permanent: true
+    state: enabled
+
+- firewalld:
+    port: 2064/tcp
+    permanent: true
+    state: enabled
+

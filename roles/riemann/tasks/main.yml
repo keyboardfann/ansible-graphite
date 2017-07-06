@@ -56,3 +56,24 @@
   run_once: true
   when: riemann_svc_existd.stat.exists == false
 
+## Start firewalld 
+- service:
+    name: firewalld
+    state: started
+
+## riemann port
+- firewalld:
+    port: 5555/udp
+    permanent: true
+    state: enabled
+
+- firewalld:
+    port: 5555/tcp
+    permanent: true
+    state: enabled
+
+- firewalld:
+    port: 5556/tcp
+    permanent: true
+    state: enabled
+

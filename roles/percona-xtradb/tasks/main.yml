@@ -48,3 +48,19 @@
   command: /bin/sh "/var/tmp/init_mysql_server.sh"
   when:  (first_install  == true) and (ansible_fqdn not in mysql_bootstrap_server)
 
+## Start firewalld
+- service:
+    name: firewalld
+    state: started
+
+## Mysql  port
+- firewalld:
+    port: 3306/tcp
+    permanent: true
+    state: enabled
+
+- firewalld:
+    port: 4567/tcp
+    permanent: true
+    state: enabled
+

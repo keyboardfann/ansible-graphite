@@ -33,18 +33,7 @@
     name: firewalld
     state: started
 
-## Check Zone exist or not
-- name: Check firewalld zone
-  shell: firewall-cmd --permanent --get-zones |grep telegrafcollector |wc -l
-  register: zone_result
-
-## Create telegraf collector firewall rule
-- name: Create telegraf collector zone 
-  command: firewall-cmd --permanent --new-zone telegrafcollector
-  when: zone_result == 0
-
 - firewalld:
-    zone: telegrafcollector
     port: 12000/udp
     permanent: true
     state: enabled

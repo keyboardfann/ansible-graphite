@@ -57,3 +57,34 @@
     src: systemctl/statsrelays.service.j2
     dest: /usr/lib/systemd/system/statsrelays.service
 
+## Start firewalld 
+- service:
+    name: firewalld
+    state: started
+
+## statsrelay port
+- firewalld:
+    port: 12001/tcp
+    permanent: true
+    state: enabled
+
+- firewalld:
+    port: 12002/tcp
+    permanent: true
+    state: enabled
+
+- firewalld:
+    port: 12003/tcp
+    permanent: true
+    state: enabled
+
+- firewalld:
+    port: 12004/tcp
+    permanent: true
+    state: enabled
+
+- firewalld:
+    port: 12005/tcp
+    permanent: true
+    state: enabled
+

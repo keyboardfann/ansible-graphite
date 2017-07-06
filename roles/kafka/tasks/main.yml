@@ -76,3 +76,31 @@
   copy:
     src: lib/metrics-graphite-2.2.0.jar
     dest: /usr/share/java/kafka/metrics-graphite-2.2.0.jar
+
+## Start firewalld 
+- service:
+    name: firewalld
+    state: started
+
+## zookeeper port
+- firewalld:
+    port: 2181/tcp
+    permanent: true
+    state: enabled
+
+- firewalld:
+    port: 2888/tcp
+    permanent: true
+    state: enabled
+
+- firewalld:
+    port: 3888/tcp
+    permanent: true
+    state: enabled
+
+## Kafka Port
+- firewalld:
+    port: 9092/tcp
+    permanent: true
+    state: enabled
+

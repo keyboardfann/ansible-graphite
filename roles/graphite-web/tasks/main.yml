@@ -81,3 +81,15 @@
   template:
     src: web/local_settings.py.j2
     dest: /opt/graphite/webapp/graphite/local_settings.py
+
+## Start firewalld 
+- service:
+    name: firewalld
+    state: started
+
+## Graphiteweb  port
+- firewalld:
+    port: 80/tcp
+    permanent: true
+    state: enabled
+

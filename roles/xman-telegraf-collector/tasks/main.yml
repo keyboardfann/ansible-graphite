@@ -27,3 +27,14 @@
   template:
     src: config/telegraf_statsd_riemann.conf.j2
     dest: /etc/telegraf/telegraf.d/telegraf_statsd_riemann.conf
+
+## Start firewalld
+- service:
+    name: firewalld
+    state: started
+
+- firewalld:
+    port: 12000/udp
+    permanent: true
+    state: enabled
+

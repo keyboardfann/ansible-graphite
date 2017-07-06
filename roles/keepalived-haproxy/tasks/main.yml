@@ -38,3 +38,25 @@
 #    dest: /etc/sysctl.conf
 #
 
+## Start firewalld 
+- service:
+    name: firewalld
+    state: started
+
+## stats web port
+- firewalld:
+    port: 80/tcp
+    permanent: true
+    state: enabled
+
+## Riemann vip port
+- firewalld:
+    port: 12010/tcp
+    permanent: true
+    state: enabled
+
+## carbon-relay vip port
+- firewalld:
+    port: 12020/tcp
+    permanent: true
+    state: enabled
