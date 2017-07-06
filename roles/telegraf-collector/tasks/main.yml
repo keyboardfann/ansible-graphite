@@ -44,7 +44,7 @@
   when: zone_result == 0
 
 - firewalld:
-    zone: telegrafcollector
-    port: 12000
+#    zone: telegrafcollector
+    port: 12000/udp
     permanent: true
     state: enabled
