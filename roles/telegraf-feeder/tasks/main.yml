@@ -28,7 +28,3 @@
     src: config/telegraf_kafka_graphite.conf.j2
     dest: /etc/telegraf/telegraf.d/telegraf_kafka_graphite.conf
 
-## Reload firewalld
-- name: Reload Firewalld
-  command: firewall-cmd --reload
-
