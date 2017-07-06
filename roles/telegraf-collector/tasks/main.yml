@@ -41,7 +41,7 @@
 ## Create telegraf collector firewall rule
 - name: Create telegraf collector zone 
   command: firewall-cmd --permanent --new-zone telegrafcollector
-  when: zone_result = 0
+  when: zone_result == 0
 
 - firewalld:
     zone: telegrafcollector
