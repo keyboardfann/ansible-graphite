@@ -88,3 +88,8 @@
     permanent: true
     state: enabled
 
+## Reload firewalld
+- service:
+    name: firewalld
+    state: reloaded
+
